@@ -71,19 +71,19 @@ void Jesusario :: animation(){
             left = 0;
         }
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        if(right2 > left2){
-            texture.loadFromFile("Images/jesusJumping.png");
-            sprite.setTexture(texture);
-            right2 = 0;
-            left2 = 0;
-        } else if(left2 > right2){
-            texture.loadFromFile("Images/jesusJumpingLeft.png");
-            sprite.setTexture(texture);
-            right2 = 0;
-            left2 = 0;
-        }
-    }
+    // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+    //     if(right2 > left2){
+    //         texture.loadFromFile("Images/jesusJumping.png");
+    //         sprite.setTexture(texture);
+    //         right2 = 0;
+    //         left2 = 0;
+    //     } else if(left2 > right2){
+    //         texture.loadFromFile("Images/jesusJumpingLeft.png");
+    //         sprite.setTexture(texture);
+    //         right2 = 0;
+    //         left2 = 0;
+    //     }
+    // }
 }
 void Jesusario :: animation2(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
