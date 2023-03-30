@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Jesusario.hpp"
+#include <SFML/Audio.hpp>
 #include <iostream>
 using namespace std;
 
@@ -8,6 +9,8 @@ Jesusario :: Jesusario(){
     y = 630;
     texture.loadFromFile("Images/jesus.png");
     sprite.setTexture(texture);
+    buffer2.loadFromFile("Sounds/smb_jump-small.wav");
+    sound2.setBuffer(buffer2);
 }
 void Jesusario :: drawJesus(sf::RenderWindow& window){
     sprite.setPosition(x,y);
@@ -23,6 +26,7 @@ void Jesusario :: move(){
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(y <= 640 && counter != 0){
+            sound2.play();
             y -= .8;
             counter--;
         }

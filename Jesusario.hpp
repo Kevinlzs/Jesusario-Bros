@@ -1,6 +1,7 @@
 #ifndef JESUSARIO
 #define JESUSARIO
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 const float SCREEN_HEIGHT = 1000;
 const float SCREEN_WIDTH = 1000;
@@ -20,6 +21,8 @@ private:
     int right = 0, left = 0, left2 = 0, right2 = 0;;
     sf::Texture texture, texture2;
     sf::Sprite sprite;
+    sf::SoundBuffer buffer2;
+    sf::Sound sound2;
 };
 
 

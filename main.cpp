@@ -44,7 +44,7 @@ int main()
         jesus.move();
         myView.setCenter(jesus.getX(),300);
         // window.getDefaultView();
-        // window.setView(myView); //Allows for camera to follow Jesusario
+        window.setView(myView); //Allows for camera to follow Jesusario
         jesus.animation();
         // jesus.animation2();
         window.display();
