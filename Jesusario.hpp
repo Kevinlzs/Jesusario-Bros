@@ -14,7 +14,7 @@ public:
     void animation2();
     float getX() const {return x;}
     float getY() const {return y;}
-private:
+// private:
     float x;
     float y;
     int counter = 500;

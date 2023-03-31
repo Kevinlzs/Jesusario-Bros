@@ -6,10 +6,10 @@ using namespace std;
 
 Jesusario :: Jesusario(){
     x = 200;
-    y = 630;
+    y = 638;
     texture.loadFromFile("Images/jesus.png");
     sprite.setTexture(texture);
-    buffer2.loadFromFile("Sounds/smb_jump-small.wav");
+    buffer2.loadFromFile("Sounds/marioJump.wav");
     sound2.setBuffer(buffer2);
 }
 void Jesusario :: drawJesus(sf::RenderWindow& window){
@@ -17,16 +17,18 @@ void Jesusario :: drawJesus(sf::RenderWindow& window){
     window.draw(sprite);
 }
 void Jesusario :: move(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        x = x;
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         if(x >= 0){
             x -= .25;
         }
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         x += .25;
-    }
+    } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(y <= 640 && counter != 0){
-            sound2.play();
+            // sound2.play();
             y -= .8;
             counter--;
         }
@@ -38,21 +40,25 @@ void Jesusario :: move(){
     }
 }
 void Jesusario :: animation(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        if(y <= 638){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        texture.loadFromFile("Images/jesus.png");
+        sprite.setTexture(texture);
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        if(y < 638){
             texture.loadFromFile("Images/jesusJumping.png");
             sprite.setTexture(texture);
-        } else if(y > 638){
+        } else {
             texture.loadFromFile("Images/jesusMovingRight.png");
             sprite.setTexture(texture);
         }
         right += 1;
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        if(y <= 638){
+        if(y < 638){
             texture.loadFromFile("Images/jesusJumpingLeft.png");
             sprite.setTexture(texture);
-        } else if(y > 638){
+        } else {
             texture.loadFromFile("Images/jesusMovingLeft.png");
             sprite.setTexture(texture);
         }

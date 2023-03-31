@@ -22,12 +22,10 @@ int main()
     // texture.loadFromFile("Images/jesus.png");
     // sf::Sprite sprite(texture);
     // sprite.setPosition(300,300);
-    while (window.isOpen())
-    {
+    while (window.isOpen()){
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)){
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed){
                 window.close();
@@ -36,6 +34,9 @@ int main()
                 // update the view to the new size of the window
                 sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                 window.setView(sf::View(visibleArea));
+            }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
+                jesus.sound2.play();
             }
         }
         window.clear(sf::Color(100, 149, 237));
