@@ -8,9 +8,11 @@ Jesusario :: Jesusario(){
     x = 200;
     y = 638;
     texture.loadFromFile("Images/jesus.png");
+    texture2.loadFromFile("Images/jesusAnimation.png");
     sprite.setTexture(texture);
-    buffer2.loadFromFile("Sounds/marioJump.wav");
-    sound2.setBuffer(buffer2);
+    // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
+    jumpBuffer.loadFromFile("Sounds/marioJump.wav");
+    jumpSound.setBuffer(jumpBuffer);
 }
 void Jesusario :: drawJesus(sf::RenderWindow& window){
     sprite.setPosition(x,y);
@@ -24,7 +26,7 @@ void Jesusario :: move(){
             x -= .25;
         }
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        x += .25;
+        x += .15;
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(y <= 640 && counter != 0){
@@ -49,9 +51,16 @@ void Jesusario :: animation(){
             texture.loadFromFile("Images/jesusJumping.png");
             sprite.setTexture(texture);
         } else {
-            texture.loadFromFile("Images/jesusMovingRight.png");
-            sprite.setTexture(texture);
+            sprite.setTexture(texture2);
+            int xTexture = 0;
+            xTexture = (int)sprite.getPosition().x/30 % 3; 
+            xTexture *= 45;
+            sprite.setTextureRect(sf::IntRect(xTexture+45, 0, 45, 48));
         }
+        //  else {
+        //     texture.loadFromFile("Images/jesusMovingRight.png");
+        //     sprite.setTexture(texture);
+        // }
         right += 1;
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -76,6 +85,7 @@ void Jesusario :: animation(){
             right = 0;
             left = 0;
         }
+    sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     }
     // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
     //     if(right2 > left2){

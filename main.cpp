@@ -12,7 +12,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(700, 800), "Jesusario");
     Map map;
     Jesusario jesus;
-    sf::View myView;
+    sf::View myView(sf::Vector2f(0.f, 0.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
     buffer.loadFromFile("Sounds/marioSong.flac");
     sf::Sound sound;
@@ -36,14 +36,14 @@ int main()
                 window.setView(sf::View(visibleArea));
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
-                jesus.sound2.play();
+                jesus.jumpSound.play();
             }
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
         jesus.drawJesus(window);
         jesus.move();
-        myView.setCenter(jesus.getX(),300);
+        myView.setCenter(jesus.getX(),350);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
         jesus.animation();
