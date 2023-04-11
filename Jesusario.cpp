@@ -5,7 +5,7 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 200;
+    x = 200; //2600 first pit
     y = 638;
     texture.loadFromFile("Images/jesus.png");
     sprite.setTexture(texture);

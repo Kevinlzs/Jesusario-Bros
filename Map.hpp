@@ -10,6 +10,7 @@ public:
 private:
     sf::Sprite sprite;
     sf::Texture texture;
+    sf::Image image;
 };
 
 

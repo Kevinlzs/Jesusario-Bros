@@ -13,11 +13,13 @@ int main()
     Map map;
     Jesusario jesus;
     sf::View myView;
+    // sf::FloatRect viewport = myView.getViewport();
     sf::SoundBuffer buffer;
     buffer.loadFromFile("Sounds/marioSong.flac");
     sf::Sound sound;
     sound.setBuffer(buffer);
     sound.play();
+    float reduction = 0.2f;
     // sf::Texture texture;
     // texture.loadFromFile("Images/jesus.png");
     // sf::Sprite sprite(texture);
@@ -44,10 +46,13 @@ int main()
         jesus.drawJesus(window);
         jesus.move();
         myView.setCenter(jesus.getX(),300);
+        // viewport.left += reduction;
+        // viewport.width -= reduction;
+        // myView.setViewport(viewport);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
         jesus.animation();
-        // jesus.animation2();
+        // jesus.animation2()
         window.display();
         // window.draw(sprite);
     }
