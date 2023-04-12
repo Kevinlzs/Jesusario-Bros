@@ -46,14 +46,13 @@ void Jesusario :: move(){
 }
 void Jesusario :: animation(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        texture.loadFromFile("Images/jesus.png");
+        // texture.loadFromFile("Images/jesus.png");
         sprite.setTexture(texture);
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         if(y < 638){
-            // texture.loadFromFile("Images/jesusJumping.png");
             sprite.setTexture(jumpRight);
-        } else {
+        } else if(y >= 638){
             sprite.setTexture(rightSprite);
             int xTexture = 0;
             xTexture = (int)sprite.getPosition().x/30 % 3; 
@@ -63,10 +62,9 @@ void Jesusario :: animation(){
         right += 1;
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        if(y < 638){
-            // texture.loadFromFile("Images/jesusJumpingLeft.png");
+        if(y < 638 /*&& sf::Keyboard::isKeyPressed(sf::Keyboard::Up)*/){
             sprite.setTexture(jumpLeft);
-        } else {
+        } else if(y >= 638){
             sprite.setTexture(leftSprite);
             int xTexture = 0;
             xTexture = (int)sprite.getPosition().x/30 % 3; 
