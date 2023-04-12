@@ -19,7 +19,7 @@ public:
     float y;
     int counter = 500;
     int right = 0, left = 0, left2 = 0, right2 = 0;;
-    sf::Texture texture, texture2;
+    sf::Texture texture, rightSprite, leftSprite, jumpRight, jumpLeft;
     sf::Sprite sprite;
     sf::SoundBuffer jumpBuffer;
     sf::Sound jumpSound;

@@ -7,8 +7,11 @@ using namespace std;
 Jesusario :: Jesusario(){
     x = 200; //2600 first pit
     y = 638;
+    jumpRight.loadFromFile("Images/jesusJumping.png");
+    jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
     texture.loadFromFile("Images/jesus.png");
-    texture2.loadFromFile("Images/jesusAnimation.png");
+    rightSprite.loadFromFile("Images/jesusAnimation.png");
+    leftSprite.loadFromFile("Images/jesusAnimationLeft.png");
     sprite.setTexture(texture);
     // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     jumpBuffer.loadFromFile("Sounds/marioJump.wav");
@@ -23,10 +26,10 @@ void Jesusario :: move(){
         x = x;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         if(x >= 0){
-            x -= .25;
+            x -= .2;
         }
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        x += .15;
+        x += .2;
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(y <= 640 && counter != 0){
@@ -48,28 +51,27 @@ void Jesusario :: animation(){
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         if(y < 638){
-            texture.loadFromFile("Images/jesusJumping.png");
-            sprite.setTexture(texture);
+            // texture.loadFromFile("Images/jesusJumping.png");
+            sprite.setTexture(jumpRight);
         } else {
-            sprite.setTexture(texture2);
+            sprite.setTexture(rightSprite);
             int xTexture = 0;
             xTexture = (int)sprite.getPosition().x/30 % 3; 
             xTexture *= 45;
-            sprite.setTextureRect(sf::IntRect(xTexture+45, 0, 45, 48));
+            sprite.setTextureRect(sf::IntRect(xTexture, 0, 45, 48));
         }
-        //  else {
-        //     texture.loadFromFile("Images/jesusMovingRight.png");
-        //     sprite.setTexture(texture);
-        // }
         right += 1;
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
         if(y < 638){
-            texture.loadFromFile("Images/jesusJumpingLeft.png");
-            sprite.setTexture(texture);
+            // texture.loadFromFile("Images/jesusJumpingLeft.png");
+            sprite.setTexture(jumpLeft);
         } else {
-            texture.loadFromFile("Images/jesusMovingLeft.png");
-            sprite.setTexture(texture);
+            sprite.setTexture(leftSprite);
+            int xTexture = 0;
+            xTexture = (int)sprite.getPosition().x/30 % 3; 
+            xTexture *= 45;
+            sprite.setTextureRect(sf::IntRect(xTexture, 0, 45, 48));
         }
         left += 1;
         left2++;
