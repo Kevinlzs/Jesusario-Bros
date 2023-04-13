@@ -10,6 +10,7 @@ public:
     Jesusario();
     void drawJesus(sf::RenderWindow& window);
     void move();
+    void grabity();
     void animation();
     void animation2();
     float getX() const {return x;}
@@ -21,8 +22,8 @@ public:
     int right = 0, left = 0, left2 = 0, right2 = 0;;
     sf::Texture texture, rightSprite, leftSprite, jumpRight, jumpLeft;
     sf::Sprite sprite;
-    sf::SoundBuffer jumpBuffer;
-    sf::Sound jumpSound;
+    sf::SoundBuffer jumpBuffer, dieBuffer;
+    sf::Sound jumpSound, dieSound;
 };
 
 

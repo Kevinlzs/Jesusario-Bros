@@ -5,7 +5,7 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 200; //2600 first pit
+    x = 200; //2600 - 2645 first pit //3240 - 3325 2nd pit
     y = 638;
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
@@ -16,6 +16,8 @@ Jesusario :: Jesusario(){
     // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     jumpBuffer.loadFromFile("Sounds/marioJump.wav");
     jumpSound.setBuffer(jumpBuffer);
+    dieBuffer.loadFromFile("Sounds/mariodie.wav");
+    dieSound.setBuffer(dieBuffer);
 }
 void Jesusario :: drawJesus(sf::RenderWindow& window){
     sprite.setPosition(x,y);
@@ -38,11 +40,23 @@ void Jesusario :: move(){
             counter--;
         }
     }
-    if(y < 638){
-        y += .3f;
+    //Gravity
+    if(y < 638){ 
+        y += .2f;
     } else {
         counter = 400;
     }
+    //pits
+    if(((x >= 2600 && x <= 2645) || (x >= 3240 && x <= 3325)) && y >= 638 ){
+        y += .2f;
+        // x = x;
+    }
+    if(y > 639 ){
+        y += .2f;
+        // x = x;
+    }
+
+  
 }
 void Jesusario :: animation(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){

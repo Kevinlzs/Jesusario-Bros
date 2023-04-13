@@ -38,6 +38,11 @@ int main()
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
                 jesus.jumpSound.play();
             }
+            if(jesus.y >= 700){
+                sound.stop();
+                jesus.dieSound.play();
+                
+            }
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
