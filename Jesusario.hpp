@@ -18,6 +18,7 @@ public:
 // private:
     float x;
     float y;
+    bool die;
     int counter = 500;
     int right = 0, left = 0, left2 = 0, right2 = 0;;
     sf::Texture texture, rightSprite, leftSprite, jumpRight, jumpLeft;

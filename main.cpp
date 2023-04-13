@@ -38,10 +38,11 @@ int main()
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
                 jesus.jumpSound.play();
             }
-            if(jesus.y >= 700){
+            if(jesus.die){
                 sound.stop();
                 jesus.dieSound.play();
-                
+                // for(long int i = 0; i < 2000000000; i++);
+                // window.close();
             }
         }
         window.clear(sf::Color(100, 149, 237));
