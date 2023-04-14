@@ -34,7 +34,7 @@ void Jesusario :: move(){
         x += .2;
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        if(y <= 640 && counter != 0){
+        if(y <= 639 && counter != 0){
             // sound2.play();
             y -= .8;
             counter--;
@@ -48,7 +48,7 @@ void Jesusario :: move(){
     }
     //pits
     if(((x >= 2600 && x <= 2645) || (x >= 3240 && x <= 3325)) && y >= 638 ){
-        y += .6f;
+        y += .4f;
         die = true;
         
         // x = x;

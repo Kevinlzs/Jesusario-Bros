@@ -41,9 +41,8 @@ int main()
             if(jesus.die){
                 sound.stop();
                 jesus.dieSound.play();
-                // for(long int i = 0; i < 2000000000; i++);
-                // window.close();
             }
+
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
@@ -57,5 +56,6 @@ int main()
         window.display();
         // window.draw(sprite);
     }
+    
     return 0;
 }
