@@ -12,7 +12,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(700, 800), "Jesusario");
     Map map;
     Jesusario jesus;
-    sf::View myView(sf::Vector2f(0.f, 0.f), sf::Vector2f(700.f, 800.f));
+    sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
     buffer.loadFromFile("Sounds/marioSong.flac");
     sf::Sound sound;
@@ -48,7 +48,8 @@ int main()
         map.drawMap(window);
         jesus.drawJesus(window);
         jesus.move();
-        myView.setCenter(jesus.getX(),350);
+        map.checkCollision(jesus, map.b1);
+        myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
         jesus.animation();
