@@ -5,7 +5,7 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 200; //2600 - 2645 first pit //3240 - 3325 2nd pit
+    x = 3800; //1st = 3230
     y = 638;
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
@@ -47,11 +47,11 @@ void Jesusario :: move(){
         counter = 400;
     }
     //pits
-    if(((x >= 2600 && x <= 2645) || (x >= 3240 && x <= 3325)) && y >= 638 ){
+    if(((x >= 3230 && x <= 3345) || (x >= 4020 && x <= 4135) || ((x >= 7214 && x <= 7319)) ) && y >= 638){
         y += .4f;
         die = true;
         
-        // x = x;
+         //x = x;
     }
     // if(y > 639){
     //     y += .2f;

@@ -10,7 +10,7 @@ public:
 private:
     sf::Sprite sprite;
     sf::Texture texture; 
-    sf:: RectangleShape r1;
+    sf:: RectangleShape b1, b2, b3, b4, b5, b6, p1, p2, p3, p4;
 };
 
 
