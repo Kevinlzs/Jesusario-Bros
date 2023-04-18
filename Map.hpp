@@ -9,7 +9,8 @@ public:
     void drawMap(sf::RenderWindow& window);
 private:
     sf::Sprite sprite;
-    sf::Texture texture;
+    sf::Texture texture; 
+    sf:: RectangleShape r1;
 };
 
 

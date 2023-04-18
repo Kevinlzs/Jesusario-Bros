@@ -68,6 +68,7 @@ void Jesusario :: animation(){
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         if(y < 638){
             sprite.setTexture(jumpRight);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
         } else if(y >= 638){
             sprite.setTexture(rightSprite);
             int xTexture = 0;
@@ -78,8 +79,9 @@ void Jesusario :: animation(){
         right += 1;
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-        if(y < 638 /*&& sf::Keyboard::isKeyPressed(sf::Keyboard::Up)*/){
+        if(y < 638){
             sprite.setTexture(jumpLeft);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
         } else if(y >= 638){
             sprite.setTexture(leftSprite);
             int xTexture = 0;
@@ -120,15 +122,18 @@ void Jesusario :: animation(){
 void Jesusario :: animation2(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(right2 > left2){
-            texture.loadFromFile("Images/jesusJumping.png");
-            sprite.setTexture(texture);
+            // texture.loadFromFile("Images/jesusJumping.png");
+            sprite.setTexture(jumpRight);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
             right2 = 0;
             left2 = 0;
         } else if(left2 > right2){
-            texture.loadFromFile("Images/jesusJumpingLeft.png");
-            sprite.setTexture(texture);
+            // texture.loadFromFile("Images/jesusJumpingLeft.png");
+            sprite.setTexture(jumpLeft);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
             right2 = 0;
             left2 = 0;
         } 
     }
+    sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
 }
