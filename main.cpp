@@ -48,10 +48,10 @@ int main()
         map.drawMap(window);
         jesus.drawJesus(window);
         jesus.move();
-        map.checkCollision(jesus, map.b1);
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
+        map.checkCollision(jesus, map.b1);
         jesus.animation();
         // jesus.animation2();
         window.display();

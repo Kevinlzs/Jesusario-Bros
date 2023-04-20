@@ -35,14 +35,14 @@ void Jesusario :: move(){
         x += .2;
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        if(y <= 638 && counter != 0){
+        if(y <= 639 && counter != 0){
             // sound2.play();
             y -= .85;
             counter--;
         }
     }
     //Gravity
-    if(y < 638 ){
+    if(y < 638 && !onBlock){
         y += .2f;
     } else {
         counter = 500;//make him jump longer
