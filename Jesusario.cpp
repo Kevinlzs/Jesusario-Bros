@@ -9,10 +9,11 @@ Jesusario :: Jesusario(){
     y = 638;
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
-    texture.loadFromFile("Images/jesus.png");
+    texture1.loadFromFile("Images/jesus.png");
+    texture2.loadFromFile("Images/jesusLeft.png");
     rightSprite.loadFromFile("Images/jesusAnimation.png");
     leftSprite.loadFromFile("Images/jesusAnimationLeft.png");
-    sprite.setTexture(texture);
+    sprite.setTexture(texture1);
     // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     jumpBuffer.loadFromFile("Sounds/marioJump.wav");
     jumpSound.setBuffer(jumpBuffer);
@@ -34,17 +35,17 @@ void Jesusario :: move(){
         x += .2;
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        if(y <= 639 && counter != 0){
+        if(y <= 638 && counter != 0){
             // sound2.play();
             y -= .85;
             counter--;
         }
     }
     //Gravity
-    if(y < 638){ 
+    if(y < 638 ){
         y += .2f;
     } else {
-        counter = 400;
+        counter = 500;//make him jump longer
     }
     //pits
     if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 638){
@@ -64,7 +65,13 @@ void Jesusario :: move(){
 void Jesusario :: animation(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         // texture.loadFromFile("Images/jesus.png");
-        sprite.setTexture(texture);
+        if(right > left){
+            sprite.setTexture(texture1);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
+        } else if(left > right){
+            sprite.setTexture(texture2);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
+        }
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
         if(y < 638){
@@ -94,17 +101,20 @@ void Jesusario :: animation(){
         left2++;
     } else {
         if(right > left){
-            texture.loadFromFile("Images/jesus.png");
-            sprite.setTexture(texture);
+            // texture.loadFromFile("Images/jesus.png");
+            sprite.setTexture(texture1);
+            sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
             right = 0;
             left = 0;
         } else if(left > right){
-            texture.loadFromFile("Images/jesusLeft.png");
-            sprite.setTexture(texture);
+            sprite.setTexture(texture2);
+            sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
             right = 0;
             left = 0;
         }
     sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
+    right = 0;
+    left = 0;
     }
     // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
     //     if(right2 > left2){

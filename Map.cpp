@@ -41,19 +41,20 @@ void Map :: drawMap(sf::RenderWindow& window){
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape& shape){
     //left side
-    if((int)(jesus.getX())+45 == shape.getPosition().x  && jesus.getY() <= shape.getPosition().y+45){
-        jesus.x = shape.getPosition().x-45;
-    } 
+    // if((int)(jesus.getX())+45 == shape.getPosition().x  && jesus.getY() <= shape.getPosition().y+45 &&){
+    //     jesus.x = shape.getPosition().x-45;
+    // } 
     //bottom
     if((int)jesus.getY() == shape.getPosition().y+60 && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
         jesus.y += 1;
     }
     //right
-    if((int)(jesus.getX()) == shape.getPosition().x+60  && jesus.getY() <= shape.getPosition().y+45){
-        jesus.x = shape.getPosition().x+61;
-    }
+    // if((int)(jesus.getX()) == shape.getPosition().x+60  && jesus.getY() <= shape.getPosition().y+45){
+    //     jesus.x = shape.getPosition().x+61;
+    // }
     //top
-    if((int)jesus.getY()-45 == shape.getPosition().y && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
-        
+    if((int)jesus.getY() == shape.getPosition().y && ((int)jesus.getX() >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60) && jesus.y <= shape.getPosition().y){
+        // jesus.onBlock = true;
+        jesus.y = shape.getPosition().y-48;
     }
 }
