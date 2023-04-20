@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Map.hpp"
+#include <iostream>
 using namespace std;
 
 Map :: Map(){
@@ -28,8 +29,8 @@ void Map :: drawMap(sf::RenderWindow& window){
     p3.setPosition(2170, 458);
     p4.setPosition(2685, 458);
     // r1.setFillColor(sf::Color(255,0,0));
-    window.draw(sprite);
     window.draw(b1);
+    window.draw(sprite);
     window.draw(b2);
     window.draw(b3);
     window.draw(b4);
@@ -40,10 +41,17 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(p4);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape& shape){
+    sf::FloatRect bounds = shape.getGlobalBounds();
+    int h = bounds.height;
+    int w = bounds.width;
+    
     //left side
-    // if((int)(jesus.getX())+45 == shape.getPosition().x  && jesus.getY() <= shape.getPosition().y+45){
+    // if((int)jesus.getY() <= shape.getPosition().y+60 && (int)jesus.getY() >= shape.getPosition().y){
     //     jesus.x = shape.getPosition().x-45;
     // } 
+    if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
+        jesus.x = shape.getPosition().x-40;
+    }
     //bottom
     if((int)jesus.getY() == shape.getPosition().y+60 && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
         jesus.y += 1;
@@ -53,7 +61,9 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape& shape){
     //     jesus.x = shape.getPosition().x+61;
     // }
     //top
-    // if((int)jesus.getY() == shape.getPosition().y && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60) && jesus.y+45 <= shape.getPosition().y+60){
-    
-    // }
+    if(((int)jesus.getX()+45 >= shape.getPosition().x) && ((int)jesus.getX() <= shape.getPosition().x+h) && ((int)jesus.getY() 
+        >= shape.getPosition().y)){
+        jesus.onBlock = true;
+        jesus.y = shape.getPosition().y-45;
+    }
 }
