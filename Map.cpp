@@ -42,26 +42,29 @@ void Map :: drawMap(sf::RenderWindow& window){
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape& shape){
     sf::FloatRect bounds = shape.getGlobalBounds();
+    
     int h = bounds.height;
     int w = bounds.width;
+
+
     //left side
     // cout << (shape.getPosition().x) << endl;
-    if((int)jesus.getY() <= shape.getPosition().y+60 && (int)jesus.getY() >= shape.getPosition().y && (int)jesus.getX()+45 == shape.getPosition().x){
+    if((int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getY() >= shape.getPosition().y && (int)jesus.getX()+45 == shape.getPosition().x){
         jesus.x = shape.getPosition().x-45;
-    } else if((int)jesus.getY() == shape.getPosition().y+60 && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
+    } if((int)jesus.getY() == shape.getPosition().y+60 && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
         jesus.y += 1;
+    //bottom
     // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
     //     jesus.x = shape.getPosition().x-40;
     // }
-    //bottom
-    } else if((int)(jesus.getX()) == shape.getPosition().x+60  && jesus.getY() <= shape.getPosition().y+45){
-        jesus.y -= 1/*shape.getPosition().x+62*/;
+    }  if((int)jesus.getY() <= shape.getPosition().y+60 && (int)jesus.getY() >= shape.getPosition().y && (int)jesus.getX() == shape.getPosition().x+60){
+        jesus.y += 1/*shape.getPosition().x+62*/;
     //right
-    } else if(((int)jesus.getX()+45 >= shape.getPosition().x) && ((int)jesus.getX() <= shape.getPosition().x+h) && ((int)jesus.getY()-60 
-        <= shape.getPosition().y)){
-    //top
-            //shape.getPosition().y-45
-        jesus.y = shape.getPosition().y-45;
+    }  if(((int)jesus.getX()+45 >= shape.getPosition().x) && ((int)jesus.getX() <= shape.getPosition().x+w) && ((int)jesus.getY()+48
 
+        == shape.getPosition().y)){
+            //shape.getPosition().y-45
+        jesus.y = shape.getPosition().y-48;
+    //top
     }
 }
