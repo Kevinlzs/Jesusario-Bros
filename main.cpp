@@ -51,7 +51,7 @@ int main()
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
-        map.checkCollision(jesus, map.b1);
+        map.checkCollision(jesus, map.blocks);
         jesus.animation();
         // jesus.animation2();
         window.display();

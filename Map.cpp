@@ -15,9 +15,6 @@ Map :: Map(){
     p2.setSize(sf::Vector2f(100,180));
     p3.setSize(sf::Vector2f(100,230));
     p4.setSize(sf::Vector2f(100,230));
-    
-}
-void Map :: drawMap(sf::RenderWindow& window){
     sprite.setPosition(0,0);
     b1.setPosition(750, 455);
     b2.setPosition(945, 455);
@@ -28,6 +25,8 @@ void Map :: drawMap(sf::RenderWindow& window){
     p2.setPosition(1793, 508);
     p3.setPosition(2170, 458);
     p4.setPosition(2685, 458);
+}
+void Map :: drawMap(sf::RenderWindow& window){
     // r1.setFillColor(sf::Color(255,0,0));
     window.draw(b1);
     window.draw(sprite);
@@ -40,33 +39,43 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(p3);
     window.draw(p4);
 } 
-void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape& shape){
-    sf::FloatRect bounds = shape.getGlobalBounds();
-    int h = bounds.height;
-    int w = bounds.width;
-
-
-    //left side
-    // cout << (shape.getPosition().x) << endl;
-    if((int)jesus.getY() <= shape.getPosition().y+60 && (int)jesus.getY()+48 >= shape.getPosition().y && (int)jesus.getX()+45 == shape.getPosition().x){
-        jesus.x = shape.getPosition().x-45;
-    } 
-    if((int)jesus.getY() == shape.getPosition().y+60 && ((int)jesus.getX()+45 >= shape.getPosition().x && (int)jesus.getX() <= shape.getPosition().x+60)){
-        jesus.y += 1;
-    //bottom
-    // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
-    //     jesus.x = shape.getPosition().x-40;
-    // }
-    }  
-    if((int)jesus.getY() <= shape.getPosition().y+60 && (int)jesus.getY()+48 >= shape.getPosition().y && (int)jesus.getX() == shape.getPosition().x+60){
-        jesus.x = shape.getPosition().x+65;
-        /*shape.getPosition().x+62*/;
-    //right
-    }  
-    if(((int)jesus.getX()+45 >= shape.getPosition().x) && ((int)jesus.getX() <= shape.getPosition().x+w) && ((int)jesus.getY()+48
-        == shape.getPosition().y)){
-            //shape.getPosition().y-45
-        jesus.y = shape.getPosition().y-48;
-    //top
+void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
+    this->blocks[0] = b1;
+    this->blocks[1] = b2;
+    this->blocks[2] = b3;
+    this->blocks[3] = b4;
+    this->blocks[4] = b5;
+    this->blocks[5] = b6;
+    this->blocks[6] = p1;
+    this->blocks[7] = p2;
+    this->blocks[8] = p3;
+    this->blocks[9] = p4;
+    for(int i = 0; i < 10; i++){
+        sf::FloatRect bounds = blocks[i].getGlobalBounds();
+        int h = bounds.height;
+        int w = bounds.width;
+        // cout << blocks[i].getPosition().x << endl;
+        //left side
+        // cout << (shape.getPosition().x) << endl;
+        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX()+45 == blocks[i].getPosition().x){
+            jesus.x = blocks[i].getPosition().x-45;
+        } 
+        if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
+            jesus.y += 1;
+        //bottom
+        // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
+        //     jesus.x = shape.getPosition().x-40;
+        // }
+        }  
+        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
+            jesus.x = blocks[i].getPosition().x+w+1;
+            /*blocks[i].getPosition().x+62*/;
+        //right
+        }  
+        if(((int)jesus.getX()+45 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
+                //blocks[i].getPosition().y-45
+            jesus.y = blocks[i].getPosition().y-48;
+        //top
+        }
     }
 }
