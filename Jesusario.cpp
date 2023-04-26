@@ -5,7 +5,7 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 300; //1st = 3230
+    x = 4600; //1st = 3230
     y = 638;
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
