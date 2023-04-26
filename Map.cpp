@@ -6,7 +6,7 @@ using namespace std;
 Map :: Map(){
     texture.loadFromFile("Images/marioMapLarger.png");
     sprite.setTexture(texture);
-    //blocks settting size
+    //blocks setting size
     b1.setSize(sf::Vector2f(60,60));
     b2.setSize(sf::Vector2f(300,60));
     b3.setSize(sf::Vector2f(60,60));
@@ -18,14 +18,57 @@ Map :: Map(){
     b9.setSize(sf::Vector2f(60,60));
     b10.setSize(sf::Vector2f(60,60));
     b11.setSize(sf::Vector2f(60,60));
-    // b12.setSize(sf::Vector2f(60,60));
+    b12.setSize(sf::Vector2f(60,60));
+    b13.setSize(sf::Vector2f(60,60));
+    b14.setSize(sf::Vector2f(160,60));
+    b15.setSize(sf::Vector2f(190,60));
+    b16.setSize(sf::Vector2f(120,60));
+    b17.setSize(sf::Vector2f(200,60));
+    b18.setSize(sf::Vector2f(200,60));
+    b19.setSize(sf::Vector2f(200,60));
+    b20.setSize(sf::Vector2f(200,60));
+    b21.setSize(sf::Vector2f(200,60));
+
+ 
+    
 
     
     //pipes setting size
-    p1.setSize(sf::Vector2f(100,130));
+    p1.setSize(sf::Vector2f(100,120));
     p2.setSize(sf::Vector2f(100,180));
     p3.setSize(sf::Vector2f(100,230));
     p4.setSize(sf::Vector2f(100,230));
+    p5.setSize(sf::Vector2f(90,120));
+    p6.setSize(sf::Vector2f(90,120));
+
+    //stairs setting size
+    s1.setSize(sf::Vector2f(50,50));
+    s2.setSize(sf::Vector2f(50,50));
+    s3.setSize(sf::Vector2f(50,50));
+    s4.setSize(sf::Vector2f(45,210));
+    s5.setSize(sf::Vector2f(45,210));
+    s6.setSize(sf::Vector2f(50,50));
+    s7.setSize(sf::Vector2f(50,50));
+    s8.setSize(sf::Vector2f(50,50));
+    s9.setSize(sf::Vector2f(50,50));
+    s10.setSize(sf::Vector2f(50,50));
+    s11.setSize(sf::Vector2f(50,50));
+    s12.setSize(sf::Vector2f(90,50)); 
+    s13.setSize(sf::Vector2f(45,420));
+    s14.setSize(sf::Vector2f(45,420));
+    s15.setSize(sf::Vector2f(45,45));
+    s16.setSize(sf::Vector2f(45,45));
+    s17.setSize(sf::Vector2f(45,45));
+    s18.setSize(sf::Vector2f(45,45));
+    s19.setSize(sf::Vector2f(45,45));
+    s20.setSize(sf::Vector2f(45,45));
+    s21.setSize(sf::Vector2f(45,45));
+    s22.setSize(sf::Vector2f(45,45));
+    s23.setSize(sf::Vector2f(45,45));
+    s24.setSize(sf::Vector2f(45,45));
+    s25.setSize(sf::Vector2f(45,45));
+    s26.setSize(sf::Vector2f(45,840));
+
 
     sprite.setPosition(0,0);
 
@@ -38,19 +81,62 @@ Map :: Map(){
     b6.setPosition(4294, 229);
     b7.setPosition(4435, 455);
     b8.setPosition(4710, 455);
-    b9.setPosition(5200, 455);
+    b9.setPosition(5000, 455);
+    b10.setPosition(5140, 455);
+    b11.setPosition(5140, 229);
+    b12.setPosition(5280,455);
+    b13.setPosition(5555,455);
+    b14.setPosition(5695,229);
+    b15.setPosition(6038,229);
+    b16.setPosition(6070,455);
+    b17.setPosition(7920,455);
+    b18.setPosition(4300,480);
+    b19.setPosition(7920,455);
+    b20.setPosition(7920,455);
+    b21.setPosition(4500,455);
+
 
     //pipes setting position
-    p1.setPosition(1323, 558);
+    p1.setPosition(1323, 573);
     p2.setPosition(1793, 508);
     p3.setPosition(2170, 458);
     p4.setPosition(2685, 458);
+    p4.setPosition(2685, 458);
+    p5.setPosition(7692, 573);
+    p6.setPosition(8447, 573);
+    //stairs setting position
+    s1.setPosition(6323, 630);
+    s2.setPosition(6370, 572);
+    s3.setPosition(6417, 514);
+    s4.setPosition(6464, 459);
+    s5.setPosition(6607, 459);
+    s6.setPosition(6650, 514);
+    s7.setPosition(6695, 572);
+    s8.setPosition(6742, 630);
+    s9.setPosition(6985, 630);
+    s10.setPosition(7030, 572);
+    s11.setPosition(7078, 514);
+    s12.setPosition(7126, 459);
+    s13.setPosition(7171, 520);
+    s14.setPosition(7313, 459);
+    s15.setPosition(7360, 514);
+    s16.setPosition(7408, 572);
+    s17.setPosition(7454, 630);
+    s18.setPosition(8540, 630);
+    s19.setPosition(8585, 572);
+    s20.setPosition(8633, 514);
+    s21.setPosition(8680, 459);
+    s22.setPosition(8728, 401);
+    s23.setPosition(8776, 343);
+    s24.setPosition(8824, 285);
+    s25.setPosition(8872, 227);
+    s26.setPosition(8920, 227);
 }
 void Map :: drawMap(sf::RenderWindow& window){
     // r1.setFillColor(sf::Color(255,0,0));
+    window.draw(sprite);
     //blocks
     window.draw(b1);
-    window.draw(sprite);
     window.draw(b2);
     window.draw(b3);
     window.draw(b4);
@@ -59,12 +145,54 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(b7);
     window.draw(b8);
     window.draw(b9);
+    window.draw(b10);
+    window.draw(b11);
+    window.draw(b12);
+    window.draw(b13);
+    window.draw(b14);
+    window.draw(b15);   
+    window.draw(b16);   
+    window.draw(b17);   
+    window.draw(b18);   
+    // window.draw(b19);   
+    // window.draw(b20);   
+    // window.draw(b21);   
 
     //pipes
     window.draw(p1);
     window.draw(p2);
     window.draw(p3);
     window.draw(p4);
+    window.draw(p5);
+    window.draw(p6);
+
+    //stairs
+    window.draw(s1);
+    window.draw(s2);
+    window.draw(s3);
+    window.draw(s4);
+    window.draw(s5);
+    window.draw(s6);
+    window.draw(s7);
+    window.draw(s8);
+    window.draw(s9);
+    window.draw(s10);
+    window.draw(s11);
+    window.draw(s12);
+    window.draw(s13);
+    window.draw(s14);
+    window.draw(s15);
+    window.draw(s16);
+    window.draw(s17);
+    window.draw(s18);
+    window.draw(s19);
+    window.draw(s20);
+    window.draw(s21);
+    window.draw(s22);
+    window.draw(s23);
+    window.draw(s24);
+    window.draw(s25);
+    window.draw(s26);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[0] = b1;
@@ -73,11 +201,50 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[3] = b4;
     this->blocks[4] = b5;
     this->blocks[5] = b6;
-    this->blocks[6] = p1;
-    this->blocks[7] = p2;
-    this->blocks[8] = p3;
-    this->blocks[9] = p4;
-    for(int i = 0; i < 10; i++){
+    this->blocks[6] = b7;
+    this->blocks[7] = b8;
+    this->blocks[8] = b9;
+    this->blocks[9] = b10;
+    this->blocks[10] = b11;
+    this->blocks[11] = b12;
+    this->blocks[12] = b13;
+    this->blocks[13] = b14;
+    this->blocks[14] = b15;
+    this->blocks[15] = b16;
+    this->blocks[16] = b17;
+    this->blocks[17] = p1;
+    this->blocks[18] = p2;
+    this->blocks[19] = p3;
+    this->blocks[20] = p4;
+    this->blocks[21] = p5;
+    this->blocks[22] = p6;
+    this->blocks[23] = s1;
+    this->blocks[24] = s2;
+    this->blocks[25] = s3;
+    this->blocks[26] = s4;
+    this->blocks[27] = s5;
+    this->blocks[28] = s6;
+    this->blocks[29] = s7;
+    this->blocks[30] = s8;
+    this->blocks[31] = s9;
+    this->blocks[32] = s10;
+    this->blocks[33] = s11;
+    this->blocks[34] = s12;
+    this->blocks[35] = s13;
+    this->blocks[36] = s14;
+    this->blocks[37] = s15;
+    this->blocks[38] = s16;
+    this->blocks[39] = s17;
+    this->blocks[40] = s18;
+    this->blocks[41] = s19;
+    this->blocks[42] = s20;
+    this->blocks[43] = s21;
+    this->blocks[44] = s22;
+    this->blocks[45] = s23;
+    this->blocks[46] = s24;
+    this->blocks[47] = s25;
+    this->blocks[48] = s26;
+    for(int i = 0; i < 49; i++){
         sf::FloatRect bounds = blocks[i].getGlobalBounds();
         int h = bounds.height;
         int w = bounds.width;
@@ -100,6 +267,7 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
         //right
         }  
         if(((int)jesus.getX()+45 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
+            // jesus.onBlock = true;
                 //blocks[i].getPosition().y-45
             jesus.y = blocks[i].getPosition().y-48;
         //top
