@@ -24,10 +24,10 @@ Map :: Map(){
     b15.setSize(sf::Vector2f(190,60));
     b16.setSize(sf::Vector2f(120,60));
     b17.setSize(sf::Vector2f(200,60));
-    b18.setSize(sf::Vector2f(200,60));
-    b19.setSize(sf::Vector2f(200,60));
-    b20.setSize(sf::Vector2f(200,60));
-    b21.setSize(sf::Vector2f(200,60));
+    b18.setSize(sf::Vector2f(60,120));
+    b19.setSize(sf::Vector2f(60,120));
+    b20.setSize(sf::Vector2f(60,120));
+    b21.setSize(sf::Vector2f(60,120));
 
  
     
@@ -90,10 +90,10 @@ Map :: Map(){
     b15.setPosition(6038,229);
     b16.setPosition(6070,455);
     b17.setPosition(7920,455);
-    b18.setPosition(4300,480);
-    b19.setPosition(7920,455);
-    b20.setPosition(7920,455);
-    b21.setPosition(4500,455);
+    b18.setPosition(3195,687);
+    b19.setPosition(3351,687);
+    b20.setPosition(3996,687);
+    b21.setPosition(4199,687);
 
 
     //pipes setting position
@@ -134,7 +134,6 @@ Map :: Map(){
 }
 void Map :: drawMap(sf::RenderWindow& window){
     // r1.setFillColor(sf::Color(255,0,0));
-    window.draw(sprite);
     //blocks
     window.draw(b1);
     window.draw(b2);
@@ -154,9 +153,9 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(b16);   
     window.draw(b17);   
     window.draw(b18);   
-    // window.draw(b19);   
-    // window.draw(b20);   
-    // window.draw(b21);   
+    window.draw(b19);   
+    window.draw(b20);   
+    window.draw(b21);   
 
     //pipes
     window.draw(p1);
@@ -193,6 +192,7 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(s24);
     window.draw(s25);
     window.draw(s26);
+    window.draw(sprite);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[0] = b1;
@@ -244,7 +244,12 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[46] = s24;
     this->blocks[47] = s25;
     this->blocks[48] = s26;
-    for(int i = 0; i < 49; i++){
+    this->blocks[49] = b18;
+    this->blocks[50] = b19;
+    this->blocks[51] = b20;
+    this->blocks[52] = b21;
+
+    for(int i = 0; i < 53; i++){
         sf::FloatRect bounds = blocks[i].getGlobalBounds();
         int h = bounds.height;
         int w = bounds.width;
