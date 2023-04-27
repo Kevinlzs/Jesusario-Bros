@@ -8,6 +8,7 @@ public:
     Map();
     void drawMap(sf::RenderWindow& window);
     void checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]);
+    void changeOnBlock(Jesusario& jesus);
 // private:
     sf::Sprite sprite;
     sf::Texture texture; 

@@ -8,7 +8,7 @@ Map :: Map(){
     sprite.setTexture(texture);
     //blocks setting size
     b1.setSize(sf::Vector2f(60,60));
-    b2.setSize(sf::Vector2f(300,60));
+    b2.setSize(sf::Vector2f(235,60));
     b3.setSize(sf::Vector2f(60,60));
     b4.setSize(sf::Vector2f(180,60));
     b5.setSize(sf::Vector2f(390,60));
@@ -134,6 +134,7 @@ Map :: Map(){
 }
 void Map :: drawMap(sf::RenderWindow& window){
     // r1.setFillColor(sf::Color(255,0,0));
+    window.draw(sprite);
     //blocks
     window.draw(b1);
     window.draw(b2);
@@ -192,7 +193,6 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(s24);
     window.draw(s25);
     window.draw(s26);
-    window.draw(sprite);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[0] = b1;
@@ -270,12 +270,19 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             jesus.x = blocks[i].getPosition().x+w+1;
             /*blocks[i].getPosition().x+62*/;
         //right
-        }  
+        }
         if(((int)jesus.getX()+45 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
-            // jesus.onBlock = true;
+            jesus.onBlock = true;
                 //blocks[i].getPosition().y-45
-            jesus.y = blocks[i].getPosition().y-48;
+            // jesus.y = blocks[i].getPosition().y-48;
         //top
         }
-    }
+        // if(((int)jesus.getX()+45 < blocks[i].getPosition().x) || ((int)jesus.getX() > blocks[i].getPosition().x+w)){
+        //     jesus.onBlock = false;
+        //     cout << "ko" << endl;
+        // }
+    } 
+}
+void Map :: changeOnBlock(Jesusario& jesus){
+    
 }
