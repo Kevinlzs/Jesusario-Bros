@@ -10,7 +10,6 @@ public:
     Jesusario();
     void drawJesus(sf::RenderWindow& window);
     void move();
-    void grabity();
     void animation();
     void animation2();
     float getX() const {return x;}

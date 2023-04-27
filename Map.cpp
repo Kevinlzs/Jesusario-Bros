@@ -10,7 +10,7 @@ Map :: Map(){
     b1.setSize(sf::Vector2f(60,60));
     b2.setSize(sf::Vector2f(235,60));
     b3.setSize(sf::Vector2f(60,60));
-    b4.setSize(sf::Vector2f(180,60));
+    b4.setSize(sf::Vector2f(141,60));
     b5.setSize(sf::Vector2f(390,60));
     b6.setSize(sf::Vector2f(190,60));
     b7.setSize(sf::Vector2f(60,60));
@@ -76,7 +76,7 @@ Map :: Map(){
     b1.setPosition(750, 455);
     b2.setPosition(945, 455);
     b3.setPosition(1039, 229);
-    b4.setPosition(3595, 455);
+    b4.setPosition(3634, 455);
     b5.setPosition(3775, 229);
     b6.setPosition(4294, 229);
     b7.setPosition(4435, 455);
@@ -134,7 +134,6 @@ Map :: Map(){
 }
 void Map :: drawMap(sf::RenderWindow& window){
     // r1.setFillColor(sf::Color(255,0,0));
-    window.draw(sprite);
     //blocks
     window.draw(b1);
     window.draw(b2);
@@ -193,6 +192,7 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(s24);
     window.draw(s25);
     window.draw(s26);
+    window.draw(sprite);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[0] = b1;
@@ -248,7 +248,8 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[50] = b19;
     this->blocks[51] = b20;
     this->blocks[52] = b21;
-
+    
+    jesus.onBlock = false;
     for(int i = 0; i < 53; i++){
         sf::FloatRect bounds = blocks[i].getGlobalBounds();
         int h = bounds.height;
@@ -282,6 +283,7 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
         //     cout << "ko" << endl;
         // }
     } 
+    
 }
 void Map :: changeOnBlock(Jesusario& jesus){
     

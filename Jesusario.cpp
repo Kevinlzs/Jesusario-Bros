@@ -38,15 +38,15 @@ void Jesusario :: move(){
         if(y <= 639 && counter != 0){
             onBlock = false;
             // sound2.play();
-            y -= .85;
+            y -= .7f;
             counter--;
         }
     }
     //Gravity
     if(y < 638 && !onBlock){
-        y += .2f;
+        y += .15f;
     } else {
-        counter = 900;//make him jump longer
+        counter = 600;//make him jump longer
     }
     //pits
     if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 638){

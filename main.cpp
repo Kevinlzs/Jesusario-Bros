@@ -2,15 +2,16 @@
 #include <SFML/Audio.hpp>
 #include "Jesusario.hpp"
 #include "Map.hpp"
+#include "Goomba.hpp"
 #include <iostream>
 using namespace std;
 
 // const float SCREEN_HEIGHT = 800;
 // const float SCREEN_WIDTH = 700;
-int main()
-{
+int main() {
     sf::RenderWindow window(sf::VideoMode(700, 800), "Jesusario");
     Map map;
+    Goomba goomba;
     Jesusario jesus;
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
@@ -47,7 +48,9 @@ int main()
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
         jesus.drawJesus(window);
+        goomba.drawGoomba(window);
         jesus.move();
+        goomba.walk();
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
