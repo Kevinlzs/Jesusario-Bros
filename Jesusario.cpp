@@ -5,7 +5,7 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 200; //1st = 3230
+    x = 300; //1st = 3230
     y = 638;
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
@@ -32,7 +32,9 @@ void Jesusario :: move(){
             x -= .2;
         }
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-        x += .2;
+        if(x <= 9955){
+            x += .2;
+        }
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
         if(y <= 639 && counter != 0){
@@ -46,7 +48,7 @@ void Jesusario :: move(){
     if(y < 638 && !onBlock){
         y += .15f;
     } else {
-        counter = 600;//make him jump longer
+        counter = 500;//make him jump longer
     }
     //pits
     if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 638){

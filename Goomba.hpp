@@ -9,16 +9,14 @@ using namespace std;
 class Goomba : public Jesusario {
 public:
     Goomba();
+    Goomba(int startingPoint);
     void drawGoomba(sf::RenderWindow& window);
     void walk();
-    void die();
-    float x;
-    float y;
-    float getX() const {return x;}
-    float getY() const {return y;}
-    bool isAlive;
-    sf::Texture texture1;
-    sf::Sprite sprite;
+    void checkDeath(const Jesusario& jesus, Goomba& goomba);
+    void dead();
+    void animation();
+    // float getX() const {return x;}
+    // float getY() const {return y;}
 };
 
 #endif

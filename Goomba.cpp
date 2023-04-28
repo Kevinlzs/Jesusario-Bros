@@ -6,47 +6,57 @@
 #include <string>
 using namespace std;
 
-Goomba::Goomba(){
+Goomba :: Goomba(){
     x = 300;
     y = 638;
     texture1.loadFromFile("Images/goomba1.png");
     sprite.setTexture(texture1);
+    die = false;
 }
-
+Goomba :: Goomba(int startingPoint){
+    x = startingPoint;
+    y = 638;
+    texture1.loadFromFile("Images/goomba1.png");
+    sprite.setTexture(texture1);
+    die = false;
+}
 void Goomba :: drawGoomba(sf::RenderWindow& window){
     sprite.setPosition(x,y);
     window.draw(sprite);
 }
-
-void Goomba :: walk()
-{      
+void Goomba :: walk(){      
     static string direction = "right";
-    int counter = 500;
-    if(direction == "right")
-    {     
+    static float counter = 0;
+    if(direction == "right" && !die){     
         x += .125;
+        counter += .1;
     }
-    else if(direction == "left")
-    {
+    else if(direction == "left" && !die){
         x -= .125;
+        counter -= .1;
     }
-    if((int)x <= 200)
-    {
+    if((int)counter <= 0){
         direction = "right";
     }
-    if((int)x >= 1300)
-    {
+    else if((int)counter >= 275){
         direction = "left";
     }
 }
-        
-void Goomba :: die()
-{
-    if(jesus.getX() >= goomba.getX() && jesus.getX() <= goomba.getX() + 50)
-    {
-        if(jesus.getY() == goomba.getY())
-        {
-            
-        }
+void Goomba :: checkDeath(const Jesusario& jesus, Goomba& goomba){
+    if(((int)jesus.getX()+45 >= (int)goomba.getX() && ((int)jesus.getX() <= goomba.getX()+50) && ((int)jesus.getY()+48 == goomba.getY()))){
+        goomba.die = true;
     }
 }
+void Goomba :: dead(){
+    if(die && y < 1000){
+        sprite.setRotation(180);
+        static int i = 0;
+        for(;i < 1;i++){
+            x += 50;
+        }
+        y += .1f;
+    }
+}
+// void Goomba :: animation(){
+//     goomba 
+// }

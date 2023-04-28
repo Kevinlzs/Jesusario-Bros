@@ -11,7 +11,8 @@ using namespace std;
 int main() {
     sf::RenderWindow window(sf::VideoMode(700, 800), "Jesusario");
     Map map;
-    Goomba goomba;
+    Goomba goomba(600);
+    Goomba goomba2(1410);
     Jesusario jesus;
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
@@ -47,14 +48,20 @@ int main() {
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
-        jesus.drawJesus(window);
         goomba.drawGoomba(window);
+        goomba2.drawGoomba(window);
+        jesus.drawJesus(window);
         jesus.move();
-        goomba.walk();
+        // goomba.walk();
+        goomba2.walk();
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
         map.checkCollision(jesus, map.blocks);
+        goomba.checkDeath(jesus, goomba);
+        goomba.dead();
+        goomba2.checkDeath(jesus, goomba2);
+        goomba2.dead();
         jesus.animation();
         // jesus.animation2();
         window.display();
