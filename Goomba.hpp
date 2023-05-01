@@ -11,7 +11,8 @@ public:
     Goomba();
     Goomba(int startingPoint);
     void drawGoomba(sf::RenderWindow& window);
-    void walk();
+    void walk(Goomba& goomba);
+    void walk2(Goomba& goomba);
     void checkDeath(const Jesusario& jesus, Goomba& goomba);
     void dead();
     void animation();

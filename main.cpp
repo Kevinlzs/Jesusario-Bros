@@ -11,14 +11,17 @@ using namespace std;
 int main() {
     sf::RenderWindow window(sf::VideoMode(700, 800), "Jesusario");
     Map map;
-    Goomba goomba(600);
-    Goomba goomba2(1410);
+    Goomba goomba(1410);
+    Goomba goomba2(2260);
     Jesusario jesus;
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
+    sf::SoundBuffer gameFinishedBuffer;
     buffer.loadFromFile("Sounds/marioSong.flac");
-    sf::Sound sound;
+    gameFinishedBuffer.loadFromFile("Sounds/winSound.wav");
+    sf::Sound sound, gameFinishedSound;
     sound.setBuffer(buffer);
+    gameFinishedSound.setBuffer(gameFinishedBuffer);
     sound.play();
     // sf::Texture texture;
     // texture.loadFromFile("Images/jesus.png");
@@ -44,6 +47,10 @@ int main() {
             //     sound.stop();
             //     jesus.dieSound.play();
             // }
+            if(jesus.gameFinished){
+                sound.stop();
+                gameFinishedSound.play();
+            }
 
         }
         window.clear(sf::Color(100, 149, 237));
@@ -52,8 +59,8 @@ int main() {
         goomba2.drawGoomba(window);
         jesus.drawJesus(window);
         jesus.move();
-        // goomba.walk();
-        goomba2.walk();
+        goomba.walk(goomba);
+        goomba2.walk2(goomba2);
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario

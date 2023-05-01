@@ -24,21 +24,39 @@ void Goomba :: drawGoomba(sf::RenderWindow& window){
     sprite.setPosition(x,y);
     window.draw(sprite);
 }
-void Goomba :: walk(){      
+void Goomba :: walk(Goomba& goomba){      
     static string direction = "right";
     static float counter = 0;
     if(direction == "right" && !die){     
-        x += .125;
+        goomba.x += .125;
         counter += .1;
     }
     else if(direction == "left" && !die){
-        x -= .125;
+        goomba.x -= .125;
         counter -= .1;
     }
     if((int)counter <= 0){
         direction = "right";
     }
     else if((int)counter >= 275){
+        direction = "left";
+    }
+}
+void Goomba :: walk2(Goomba& goomba){      
+    static string direction = "right";
+    static float counter = 0;
+    if(direction == "right" && !die){     
+        goomba.x += .125;
+        counter += .1;
+    }
+    else if(direction == "left" && !die){
+        goomba.x -= .125;
+        counter -= .1;
+    }
+    if((int)counter <= 0){
+        direction = "right";
+    }
+    else if((int)counter >= 320){
         direction = "left";
     }
 }
