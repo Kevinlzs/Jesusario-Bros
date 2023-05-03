@@ -16,8 +16,8 @@ public:
     void checkDeath(const Jesusario& jesus, Goomba& goomba);
     void dead();
     void animation();
-    // float getX() const {return x;}
-    // float getY() const {return y;}
+    float getX() const {return x;}
+    float getY() const {return y;}
 };
 
 #endif

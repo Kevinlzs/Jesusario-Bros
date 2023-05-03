@@ -1,10 +1,14 @@
-#ifndef JESUSARIO
-#define JESUSARIO
+#ifndef JESUSARIO_HPP
+#define JESUSARIO_HPP
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Jesusario.hpp"
 
 const float SCREEN_HEIGHT = 1000;
 const float SCREEN_WIDTH = 1000;
+
+class Goomba;
+
 class Jesusario {
 public:
     Jesusario();
@@ -12,6 +16,8 @@ public:
     void move();
     void animation();
     void animation2();
+    void dead(Jesusario& jesus, Goomba& goomba);
+    void bringDown();
     float getX() const {return x;}
     float getY() const {return y;}
 // private:

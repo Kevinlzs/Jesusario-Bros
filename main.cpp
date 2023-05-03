@@ -22,6 +22,8 @@ int main() {
     sf::Sound sound, gameFinishedSound;
     sound.setBuffer(buffer);
     gameFinishedSound.setBuffer(gameFinishedBuffer);
+    
+
     sound.play();
     // sf::Texture texture;
     // texture.loadFromFile("Images/jesus.png");
@@ -43,15 +45,22 @@ int main() {
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
                 jesus.jumpSound.play();
             }
-            // if(jesus.die){
-            //     sound.stop();
-            //     jesus.dieSound.play();
-            // }
+            if(jesus.die){
+                sound.stop();
+                jesus.dieSound.play();
+                
+            }
             if(jesus.gameFinished){
                 sound.stop();
-                gameFinishedSound.play();
+                if(!jesus.die)
+                {
+                    gameFinishedSound.play();
+                }
+                else
+                {
+                    jesus.dieSound.play();
+                }
             }
-
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
@@ -69,6 +78,9 @@ int main() {
         goomba.dead();
         goomba2.checkDeath(jesus, goomba2);
         goomba2.dead();
+        jesus.dead(jesus, goomba);
+        jesus.dead(jesus, goomba2);
+        jesus.bringDown();
         jesus.animation();
         // jesus.animation2();
         window.display();

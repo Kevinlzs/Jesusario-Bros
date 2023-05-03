@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Jesusario.hpp"
+#include "Goomba.hpp"
 #include <SFML/Audio.hpp>
 #include <iostream>
 using namespace std;
@@ -129,21 +130,20 @@ void Jesusario :: animation(){
     //     }
     // }
 }
-void Jesusario :: animation2(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-        if(right2 > left2){
-            // texture.loadFromFile("Images/jesusJumping.png");
-            sprite.setTexture(jumpRight);
-            sprite.setTextureRect(sf::IntRect(0,0,45,48));
-            right2 = 0;
-            left2 = 0;
-        } else if(left2 > right2){
-            // texture.loadFromFile("Images/jesusJumpingLeft.png");
-            sprite.setTexture(jumpLeft);
-            sprite.setTextureRect(sf::IntRect(0,0,45,48));
-            right2 = 0;
-            left2 = 0;
-        } 
+void Jesusario :: dead(Jesusario& jesus, Goomba& goomba)
+{
+    if((int)jesus.getY() <= (int)goomba.getY()+48 && (int)jesus.getY()+48 >= (int)goomba.getY() && (int)jesus.getX() == (int)goomba.getX()+48 || 
+    (((int)jesus.getX()+45 >= goomba.getX()) && ((int)jesus.getX() <= (int)goomba.getX() + 45) && ((int)jesus.getY()+48 == (int)goomba.getY() + 48))){
+        jesus.die = true;
     }
-    sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
+}
+void Jesusario :: bringDown(){
+    static int i = 0;
+    if(die && y < 1000){
+        if(i == 0){
+            y-=75;
+            i++;
+        }
+        y += .1f;
+    }
 }

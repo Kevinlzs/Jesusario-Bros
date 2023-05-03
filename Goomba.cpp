@@ -61,8 +61,11 @@ void Goomba :: walk2(Goomba& goomba){
     }
 }
 void Goomba :: checkDeath(const Jesusario& jesus, Goomba& goomba){
-    if(((int)jesus.getX()+45 >= (int)goomba.getX() && ((int)jesus.getX() <= goomba.getX()+50) && ((int)jesus.getY()+48 == goomba.getY()))){
-        goomba.die = true;
+    if(!jesus.die)
+    {
+        if(((int)jesus.getX()+45 >= (int)goomba.getX() && ((int)jesus.getX() <= goomba.getX()+50) && ((int)jesus.getY()+48 == goomba.getY()))){
+            goomba.die = true;
+        }
     }
 }
 void Goomba :: dead(){
