@@ -14,6 +14,7 @@ Jesusario :: Jesusario(){
     texture2.loadFromFile("Images/jesusLeft.png");
     rightSprite.loadFromFile("Images/jesusAnimation.png");
     leftSprite.loadFromFile("Images/jesusAnimationLeft.png");
+    jesusDied.loadFromFile("Images/jesusDdead.png");
     sprite.setTexture(texture1);
     // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     jumpBuffer.loadFromFile("Sounds/marioJump.wav");
@@ -41,7 +42,7 @@ void Jesusario :: move(){
         if(y <= 639 && counter != 0){
             onBlock = false;
             // sound2.play();
-            y -= .7f;
+            y -= .65f;
             counter--;
         }
     }
@@ -63,6 +64,10 @@ void Jesusario :: move(){
     }
 }
 void Jesusario :: animation(){
+    if(die){
+        sprite.setTexture(jesusDied);
+        sprite.setTextureRect(sf::IntRect(0,0,45,48));
+    }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
         // texture.loadFromFile("Images/jesus.png");
         if(right > left){

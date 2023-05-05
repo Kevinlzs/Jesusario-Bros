@@ -98,7 +98,7 @@ Map :: Map(){
 
     //pipes setting position
     p1.setPosition(1323, 573);
-    p2.setPosition(1793, 508);
+    p2.setPosition(1793, 515);
     p3.setPosition(2170, 458);
     p4.setPosition(2685, 458);
     p4.setPosition(2685, 458);
@@ -159,7 +159,7 @@ void Map :: drawMap(sf::RenderWindow& window){
 
     //pipes
     window.draw(p1);
-    window.draw(p2);
+    // window.draw(p2);
     window.draw(p3);
     window.draw(p4);
     window.draw(p5);

@@ -18,6 +18,8 @@ public:
     void animation();
     float getX() const {return x;}
     float getY() const {return y;}
+    sf::SoundBuffer goombaDeadBuffer;
+    sf::Sound goombaDeadSound;
 };
 
 #endif

@@ -12,6 +12,8 @@ Goomba :: Goomba(){
     texture1.loadFromFile("Images/goomba1.png");
     sprite.setTexture(texture1);
     die = false;
+    goombaDeadBuffer.loadFromFile("Sounds/stomp.wav");
+    goombaDeadSound.setBuffer(goombaDeadBuffer);
 }
 Goomba :: Goomba(int startingPoint){
     x = startingPoint;
@@ -19,6 +21,9 @@ Goomba :: Goomba(int startingPoint){
     texture1.loadFromFile("Images/goomba1.png");
     sprite.setTexture(texture1);
     die = false;
+    goombaDeadBuffer.loadFromFile("Sounds/stomp.wav");
+    goombaDeadSound.setBuffer(goombaDeadBuffer);
+
 }
 void Goomba :: drawGoomba(sf::RenderWindow& window){
     sprite.setPosition(x,y);

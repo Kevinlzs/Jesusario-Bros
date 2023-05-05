@@ -26,7 +26,7 @@ public:
     bool die, onBlock = false, gameFinished = false;
     int counter = 500;
     int right = 0, left = 0, left2 = 0, right2 = 0;;
-    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft;
+    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft, jesusDied;
     sf::Sprite sprite;
     sf::SoundBuffer jumpBuffer, dieBuffer;
     sf::Sound jumpSound, dieSound;

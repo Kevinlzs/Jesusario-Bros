@@ -17,12 +17,18 @@ int main() {
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
     sf::SoundBuffer gameFinishedBuffer;
+    sf::Texture logo1;
+    sf::Sprite logo;
+    logo1.loadFromFile("Images/untitled.png");
+    logo.setTexture(logo1);
     buffer.loadFromFile("Sounds/marioSong.flac");
     gameFinishedBuffer.loadFromFile("Sounds/winSound.wav");
     sf::Sound sound, gameFinishedSound;
     sound.setBuffer(buffer);
     gameFinishedSound.setBuffer(gameFinishedBuffer);
-    
+    bool songPlayedForDeath = true;
+    bool songGoombaDeath = true;
+    bool songGoombaDeath2 = true;
 
     sound.play();
     // sf::Texture texture;
@@ -45,11 +51,6 @@ int main() {
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
                 jesus.jumpSound.play();
             }
-            if(jesus.die){
-                sound.stop();
-                jesus.dieSound.play();
-                
-            }
             if(jesus.gameFinished){
                 sound.stop();
                 if(!jesus.die)
@@ -64,6 +65,7 @@ int main() {
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
+        window.draw(logo);
         goomba.drawGoomba(window);
         goomba2.drawGoomba(window);
         jesus.drawJesus(window);
@@ -82,6 +84,25 @@ int main() {
         jesus.dead(jesus, goomba2);
         jesus.bringDown();
         jesus.animation();
+        if(jesus.die && songPlayedForDeath){
+            sound.stop();
+            jesus.dieSound.play();
+            songPlayedForDeath = false;
+        }
+        if(goomba.die && songGoombaDeath){
+            goomba.goombaDeadSound.play();
+            songGoombaDeath = false;
+        }
+        if(goomba2.die && songGoombaDeath2){
+            goomba.goombaDeadSound.play();
+            songGoombaDeath2 = false;
+        }
+        // if(jesus.die){
+        //     sound.stop();
+        //     jesus.dieSound.play();
+        //     while (jesus.dieSound.getStatus() == sf::Sound::Playing);
+        //     jesus.die = false;
+        // }
         // jesus.animation2();
         window.display();
         // window.draw(sprite);
