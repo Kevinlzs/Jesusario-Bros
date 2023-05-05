@@ -257,11 +257,12 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
         // cout << blocks[i].getPosition().x << endl;
         //left side
         // cout << (shape.getPosition().x) << endl;
-        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX()+45 == blocks[i].getPosition().x){
+        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+47 >= blocks[i].getPosition().y && (int)jesus.getX()+45 == blocks[i].getPosition().x){
             jesus.x = blocks[i].getPosition().x-45;
         } 
         if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
             jesus.y += 1;
+            jesus.collision = true;
         //bottom
         // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
         //     jesus.x = shape.getPosition().x-40;
@@ -272,7 +273,7 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             /*blocks[i].getPosition().x+62*/;
         //right
         }
-        if(((int)jesus.getX()+45 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
+        if(((int)jesus.getX()+44 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
             jesus.onBlock = true;
                 //blocks[i].getPosition().y-45
             // jesus.y = blocks[i].getPosition().y-48;

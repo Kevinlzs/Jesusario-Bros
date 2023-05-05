@@ -39,22 +39,26 @@ void Jesusario :: move(){
         }
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up ) && !gameFinished){
-        if(y <= 639 && counter != 0){
+        if(y <= 639 && counter != 0 && !collision && !alreadyJumped){
             onBlock = false;
             // sound2.play();
             y -= .65f;
-            counter--;
+            counter-=1;
+        } else {
+            counter = 0;
+            alreadyJumped = true;
         }
     }
     //Gravity
-    if(y < 638 && !onBlock){
-        y += .15f;
-    } else {
-        counter = 500;//make him jump longer
-    }
+    // if(y < 638 && !onBlock){
+    //     y += .15f;
+    // } else {
+    //     collision = false;
+    //     counter = 500;//make him jump longer
+    // }
     //pits
     if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 638){
-        y += .3f;
+        y += .2f;
         die = true;
         x = x;
     }
@@ -149,6 +153,15 @@ void Jesusario :: bringDown(){
             y-=75;
             i++;
         }
-        y += .1f;
+        y += .06f;
+    }
+}
+void Jesusario :: gravity(){
+    if(y < 638 && !onBlock){
+        y += .15f;
+    } else {
+        collision = false;
+        counter = 500;//make him jump longer
+        alreadyJumped = false;
     }
 }

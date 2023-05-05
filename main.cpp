@@ -21,6 +21,7 @@ int main() {
     sf::Sprite logo;
     logo1.loadFromFile("Images/untitled.png");
     logo.setTexture(logo1);
+    logo.setPosition(20,-80);
     buffer.loadFromFile("Sounds/marioSong.flac");
     gameFinishedBuffer.loadFromFile("Sounds/winSound.wav");
     sf::Sound sound, gameFinishedSound;
@@ -70,6 +71,7 @@ int main() {
         goomba2.drawGoomba(window);
         jesus.drawJesus(window);
         jesus.move();
+        jesus.gravity();
         goomba.walk(goomba);
         goomba2.walk2(goomba2);
         myView.setCenter(jesus.getX(),400);
