@@ -29,16 +29,16 @@ void Jesusario :: drawJesus(sf::RenderWindow& window){
 void Jesusario :: move(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
         x = x;
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished){
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die){
         if(x >= 0){
             x -= .2;
         }
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
         if(x <= 9955){
             x += .2;
         }
     } 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up ) && !gameFinished){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up ) && !gameFinished && !die){
         if(y <= 639 && counter != 0 && !collision && !alreadyJumped){
             onBlock = false;
             // sound2.play();
@@ -72,7 +72,7 @@ void Jesusario :: animation(){
         sprite.setTexture(jesusDied);
         sprite.setTextureRect(sf::IntRect(0,0,45,48));
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
         // texture.loadFromFile("Images/jesus.png");
         if(right > left){
             sprite.setTexture(texture1);
@@ -82,7 +82,7 @@ void Jesusario :: animation(){
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
         }
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
         if(y < 638 && !onBlock){
             sprite.setTexture(jumpRight);
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
@@ -95,7 +95,7 @@ void Jesusario :: animation(){
         }
         right += 1;
         right2++;
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished){
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die){
         if(y < 638 && !onBlock){
             sprite.setTexture(jumpLeft);
             sprite.setTextureRect(sf::IntRect(0,0,45,48));

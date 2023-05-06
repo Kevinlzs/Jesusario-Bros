@@ -49,7 +49,7 @@ int main() {
                 sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
                 window.setView(sf::View(visibleArea));
             }
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)){
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up) && !jesus.die){
                 jesus.jumpSound.play();
             }
             if(jesus.gameFinished){
@@ -86,6 +86,8 @@ int main() {
         jesus.dead(jesus, goomba2);
         jesus.bringDown();
         jesus.animation();
+        goomba.animation();
+        goomba2.animation();
         if(jesus.die && songPlayedForDeath){
             sound.stop();
             jesus.dieSound.play();
@@ -99,12 +101,6 @@ int main() {
             goomba.goombaDeadSound.play();
             songGoombaDeath2 = false;
         }
-        // if(jesus.die){
-        //     sound.stop();
-        //     jesus.dieSound.play();
-        //     while (jesus.dieSound.getStatus() == sf::Sound::Playing);
-        //     jesus.die = false;
-        // }
         // jesus.animation2();
         window.display();
         // window.draw(sprite);

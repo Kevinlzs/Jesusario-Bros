@@ -11,6 +11,7 @@ Goomba :: Goomba(){
     y = 638;
     texture1.loadFromFile("Images/goomba1.png");
     sprite.setTexture(texture1);
+    sprite.setTextureRect(sf::IntRect(0,0,49,48));
     die = false;
     goombaDeadBuffer.loadFromFile("Sounds/stomp.wav");
     goombaDeadSound.setBuffer(goombaDeadBuffer);
@@ -20,6 +21,7 @@ Goomba :: Goomba(int startingPoint){
     y = 638;
     texture1.loadFromFile("Images/goomba1.png");
     sprite.setTexture(texture1);
+    sprite.setTextureRect(sf::IntRect(0,0,49,48));
     die = false;
     goombaDeadBuffer.loadFromFile("Sounds/stomp.wav");
     goombaDeadSound.setBuffer(goombaDeadBuffer);
@@ -83,6 +85,12 @@ void Goomba :: dead(){
         y += .1f;
     }
 }
-// void Goomba :: animation(){
-//     goomba 
-// }
+void Goomba :: animation(){
+    // sprite.setTexture(texture1);
+    if(!die){
+        int xTexture = 0;
+        xTexture = (int)sprite.getPosition().x/30 % 2; 
+        xTexture *= 50;
+        sprite.setTextureRect(sf::IntRect(xTexture+50, 0, 49, 48));
+    }
+}
