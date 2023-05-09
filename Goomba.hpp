@@ -13,13 +13,19 @@ public:
     void drawGoomba(sf::RenderWindow& window);
     void walk(Goomba& goomba);
     void walk2(Goomba& goomba);
+    void walk3(Goomba& goomba);
     void checkDeath(const Jesusario& jesus, Goomba& goomba);
-    void dead();
+    void dead(Jesusario& jesus);
     void animation();
     float getX() const {return x;}
     float getY() const {return y;}
     sf::SoundBuffer goombaDeadBuffer;
     sf::Sound goombaDeadSound;
+    bool alreadyDied = false, deleteSprite = false;
+    bool die = false;
+    int counter = 0;
+    sf::Texture deadTexture;
+    // sf::Sprite deadSprite;
 };
 
 #endif

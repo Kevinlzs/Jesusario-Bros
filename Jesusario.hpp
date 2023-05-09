@@ -21,14 +21,17 @@ public:
     void gravity();
     float getX() const {return x;}
     float getY() const {return y;}
+    void clearedLevel();
+    void drawMariachis(sf::RenderWindow& window);
 // private:
     float x;
     float y;
     bool die = false, onBlock = false, gameFinished = false, collision = false, alreadyJumped = false;
+    bool deleteSprite = false, fellInPits = false;
     int counter = 500;
     int right = 0, left = 0, left2 = 0, right2 = 0;;
-    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft, jesusDied;
-    sf::Sprite sprite;
+    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft, jesusDied, mariachi;
+    sf::Sprite sprite, mariachiOne, mariachiTwo;
     sf::SoundBuffer jumpBuffer, dieBuffer;
     sf::Sound jumpSound, dieSound;
 };

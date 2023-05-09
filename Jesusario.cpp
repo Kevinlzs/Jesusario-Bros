@@ -6,8 +6,9 @@
 using namespace std;
 
 Jesusario :: Jesusario(){
-    x = 200; //1st = 3230
+    x = 300; //1st = 3230// castle door = 9625
     y = 638;
+    mariachi.loadFromFile("Images/mariachiPixel.png");
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
     texture1.loadFromFile("Images/jesus.png");
@@ -23,8 +24,10 @@ Jesusario :: Jesusario(){
     dieSound.setBuffer(dieBuffer);
 }
 void Jesusario :: drawJesus(sf::RenderWindow& window){
-    sprite.setPosition(x,y);
-    window.draw(sprite);
+    if(!deleteSprite){
+        sprite.setPosition(x,y);
+        window.draw(sprite);
+    }
 }
 void Jesusario :: move(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished){
@@ -59,11 +62,16 @@ void Jesusario :: move(){
     //pits
     if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 638){
         y += .2f;
+        fellInPits = true;
+        if(y > 850){
+            die = true;
+        }
+    } else if(y > 850){
+        fellInPits = true;
         die = true;
-        x = x;
     }
     
-    if(x >= 9350){
+    if(x >= 9340){
         gameFinished = true;
     }
 }
@@ -139,16 +147,17 @@ void Jesusario :: animation(){
     //     }
     // }
 }
-void Jesusario :: dead(Jesusario& jesus, Goomba& goomba)
-{
-    if((int)jesus.getY() <= (int)goomba.getY()+48 && (int)jesus.getY()+48 >= (int)goomba.getY() && (int)jesus.getX() == (int)goomba.getX()+48 || 
-    (((int)jesus.getX()+45 >= goomba.getX()) && ((int)jesus.getX() <= (int)goomba.getX() + 45) && ((int)jesus.getY()+48 == (int)goomba.getY() + 48))){
-        jesus.die = true;
+void Jesusario :: dead(Jesusario& jesus, Goomba& goomba){
+    if(!goomba.die){
+        if((int)jesus.getY() <= (int)goomba.getY()+48 && (int)jesus.getY()+48 >= (int)goomba.getY() && (int)jesus.getX() == (int)goomba.getX()+48 || 
+        (((int)jesus.getX()+45 >= goomba.getX()) && ((int)jesus.getX() <= (int)goomba.getX() + 45) && ((int)jesus.getY()+48 == (int)goomba.getY() + 48))){
+            jesus.die = true;
+        }
     }
 }
 void Jesusario :: bringDown(){
     static int i = 0;
-    if(die && y < 1000){
+    if(die && y < 1000 && !fellInPits){
         if(i == 0){
             y-=75;
             i++;
@@ -163,5 +172,28 @@ void Jesusario :: gravity(){
         collision = false;
         counter = 500;//make him jump longer
         alreadyJumped = false;
+    }
+}
+void Jesusario :: clearedLevel(){
+    if(gameFinished && x < 9625){
+        x += .1f;
+        sprite.setTexture(rightSprite);
+        int xTexture = 0;
+        xTexture = (int)sprite.getPosition().x/30 % 3; 
+        xTexture *= 45;
+        sprite.setTextureRect(sf::IntRect(xTexture, 0, 45, 48));
+    } else if(x > 9625){
+        deleteSprite = true;
+    }
+}
+void Jesusario :: drawMariachis(sf::RenderWindow& window){
+    if(gameFinished){
+        mariachiOne.setTexture(mariachi);
+        mariachiTwo.setTexture(mariachi);
+        mariachiTwo.setTextureRect(sf::IntRect(126, 0, -126, 162));
+        mariachiOne.setPosition(9480, 542);
+        mariachiTwo.setPosition(9690, 542);
+        window.draw(mariachiOne);
+        window.draw(mariachiTwo);
     }
 }

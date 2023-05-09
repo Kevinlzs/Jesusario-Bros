@@ -13,6 +13,7 @@ int main() {
     Map map;
     Goomba goomba(1410);
     Goomba goomba2(2260);
+    Goomba goomba3(3500);
     Jesusario jesus;
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
@@ -30,6 +31,7 @@ int main() {
     bool songPlayedForDeath = true;
     bool songGoombaDeath = true;
     bool songGoombaDeath2 = true;
+    bool songGoombaDeath3 = true;
 
     sound.play();
     // sf::Texture texture;
@@ -69,25 +71,32 @@ int main() {
         window.draw(logo);
         goomba.drawGoomba(window);
         goomba2.drawGoomba(window);
+        goomba3.drawGoomba(window);
         jesus.drawJesus(window);
         jesus.move();
         jesus.gravity();
         goomba.walk(goomba);
         goomba2.walk2(goomba2);
+        goomba3.walk3(goomba3);
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
         map.checkCollision(jesus, map.blocks);
         goomba.checkDeath(jesus, goomba);
-        goomba.dead();
+        goomba.dead(jesus);
         goomba2.checkDeath(jesus, goomba2);
-        goomba2.dead();
+        goomba2.dead(jesus);
+        goomba3.checkDeath(jesus, goomba3);
+        goomba3.dead(jesus);
         jesus.dead(jesus, goomba);
         jesus.dead(jesus, goomba2);
         jesus.bringDown();
         jesus.animation();
         goomba.animation();
         goomba2.animation();
+        goomba3.animation();
+        jesus.clearedLevel();
+        jesus.drawMariachis(window);
         if(jesus.die && songPlayedForDeath){
             sound.stop();
             jesus.dieSound.play();
@@ -100,6 +109,10 @@ int main() {
         if(goomba2.die && songGoombaDeath2){
             goomba.goombaDeadSound.play();
             songGoombaDeath2 = false;
+        }
+        if(goomba3.die && songGoombaDeath3){
+            goomba.goombaDeadSound.play();
+            songGoombaDeath3 = false;
         }
         // jesus.animation2();
         window.display();
