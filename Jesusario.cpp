@@ -8,6 +8,8 @@ using namespace std;
 Jesusario :: Jesusario(){
     x = 300; //1st = 3230// castle door = 9625
     y = 638;
+    strongJesusJumping.loadFromFile("Images/strongJesusJumping.png");
+    strongJesusJumpingLeft.loadFromFile("Images/strongJesusJumpingLeft.png");
     strongJesus.loadFromFile("Images/strongJesus.png");
     strongJesusLeft.loadFromFile("Images/strongJesusLeft.png");
     strongJesusAnimation.loadFromFile("Images/bigJesusAnimation.png");
@@ -24,6 +26,10 @@ Jesusario :: Jesusario(){
     // sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
     jumpBuffer.loadFromFile("Sounds/marioJump.wav");
     jumpSound.setBuffer(jumpBuffer);
+    powerUpB.loadFromFile("Sounds/smb_powerup.wav");
+    powerUpS.setBuffer(powerUpB);
+    powerDownB.loadFromFile("Sounds/smb_pipe.wav");
+    powerDownS.setBuffer(powerDownB);
     dieBuffer.loadFromFile("Sounds/mariodie.wav");
     dieSound.setBuffer(dieBuffer);
 }
@@ -76,7 +82,7 @@ void Jesusario :: move(){
         if(y > 850){
             die = true;
         }
-    } else if(y > 850){
+    } else if(y >= 790){
         fellInPits = true;
         die = true;
     }
@@ -178,6 +184,7 @@ void Jesusario :: dead(Jesusario& jesus, Goomba& goomba){
             jesus.invincible = true;
             sprite.setTexture(texture1);
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
+            jesus.hitByGoomba = true;
         }
     }
 }
@@ -203,16 +210,23 @@ void Jesusario :: gravity(){
     }
 }
 void Jesusario :: clearedLevel(){
-    if(gameFinished && x < 9625){
+    if(gameFinished && x < 9625 && smallJesus){
         x += .1f;
         sprite.setTexture(rightSprite);
         int xTexture = 0;
         xTexture = (int)sprite.getPosition().x/30 % 3; 
         xTexture *= 45;
         sprite.setTextureRect(sf::IntRect(xTexture, 0, 45, 48));
-    } else if(x > 9625){
+    } else if(gameFinished && x < 9625 && bigJesus){
+        x += .1f;
+        sprite.setTexture(strongJesusAnimation);
+        int xTexture = 0;
+        xTexture = (int)sprite.getPosition().x/30 % 3; 
+        xTexture *= 66;
+        sprite.setTextureRect(sf::IntRect(xTexture, 0, 66, 96));
+    } else if(x > 9600){
         deleteSprite = true;
-    }
+    } 
 }
 void Jesusario :: drawMariachis(sf::RenderWindow& window){
     if(gameFinished){
@@ -246,7 +260,7 @@ void Jesusario :: animation2(){
     }
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && bigJesus){
         if(y < 590 && !onBlock){
-            sprite.setTexture(strongJesus);
+            sprite.setTexture(strongJesusJumping);
             sprite.setTextureRect(sf::IntRect(0,0,61,96));
         } else if(y >= 638 || 1){
             sprite.setTexture(strongJesusAnimation);
@@ -259,7 +273,7 @@ void Jesusario :: animation2(){
         right2++;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die && bigJesus){
         if(y < 590 && !onBlock){
-            sprite.setTexture(strongJesusLeft);
+            sprite.setTexture(strongJesusJumpingLeft);
             sprite.setTextureRect(sf::IntRect(0,0,62,96));
         } else if(y >= 638 || 1){
             sprite.setTexture(strongJesusAnimationLeft);

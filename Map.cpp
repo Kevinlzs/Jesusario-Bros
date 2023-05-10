@@ -10,6 +10,8 @@ Map :: Map(){
     blockAnimationT.loadFromFile("Images/blockAnimation.png");
     mushroomS.setTexture(mushroomT);
     sprite.setTexture(texture);
+    mushroomAppearsB.loadFromFile("Sounds/smb_powerup_appears.wav");
+    mushroomAppearsS.setBuffer(mushroomAppearsB);
     //blocks setting size
     b1.setSize(sf::Vector2f(60,60));
     b2.setSize(sf::Vector2f(235,60));
@@ -77,8 +79,8 @@ Map :: Map(){
     sprite.setPosition(0,0);
 
     //blocks setting position
-    mushroomS.setPosition(756, 460);
-    blockS.setPosition(756, 460);
+    mushroomS.setPosition(756, 459);
+    blockS.setPosition(756, 459);
     b1.setPosition(750, 455);
     b2.setPosition(945, 455);
     b3.setPosition(1039, 229);
@@ -199,7 +201,11 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(s25);
     window.draw(s26);
     window.draw(sprite);
-    window.draw(mushroomS);
+    if(!deleteMushroom){
+        window.draw(mushroomS);
+    } else {
+        mushroomS.setPosition(1,999);
+    }
     window.draw(blockS);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
@@ -321,6 +327,7 @@ void Map :: animation(Jesusario& jesus){
     if(hit && counter != 50){
         mushroomS.setPosition(x,y-=.1);
         counter++;
+        mushroomAppears = true;
     } 
     if(!hit){
         blockS.setTexture(blockAnimationT);
@@ -344,5 +351,13 @@ void Map :: mushroom(Jesusario& jesus){
     if((int)jesus.getY() <= mushroomS.getPosition().y+48 && (int)jesus.getY()+48 >= mushroomS.getPosition().y && (int)jesus.getX()+45 == mushroomS.getPosition().x && jesus.smallJesus){
         jesus.bigJesus = true;
         jesus.smallJesus = false;
+        deleteMushroom = true;
+        jesus.gotMushroom = true;
     } 
+    if((int)jesus.getY() <= mushroomS.getPosition().y+48 && (int)jesus.getY()+96 >= mushroomS.getPosition().y && (int)jesus.getX() == mushroomS.getPosition().x+48){
+        jesus.bigJesus = true;
+        jesus.smallJesus = false;
+        deleteMushroom = true;
+        jesus.gotMushroom = true;
+    }
 }

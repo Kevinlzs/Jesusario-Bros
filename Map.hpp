@@ -11,9 +11,11 @@ public:
     void animation(Jesusario& jesus);
     void mushroom(Jesusario& jesus);
 // private:
-    bool hit = false;
+    bool hit = false, deleteMushroom = false, mushroomAppears = false;
     sf::Sprite sprite, mushroomS, blockS;
     sf::Texture texture, mushroomT, blockT, blockAnimationT;
+    sf::SoundBuffer mushroomAppearsB;
+    sf::Sound mushroomAppearsS;
     int counter = 0, x = 756, y = 460, counter2 = 0, counter3 = 0; 
     sf::RectangleShape b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21;
     sf::RectangleShape p1, p2, p3, p4, p5, p6;

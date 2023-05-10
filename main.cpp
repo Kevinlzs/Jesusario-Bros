@@ -32,6 +32,9 @@ int main() {
     bool songGoombaDeath = true;
     bool songGoombaDeath2 = true;
     bool songGoombaDeath3 = true;
+    bool powerUpSound = true;
+    bool powerDownSound = true;
+    bool mushroom = true;
 
     sound.play();
     // sf::Texture texture;
@@ -118,6 +121,18 @@ int main() {
         if(goomba3.die && songGoombaDeath3){
             goomba.goombaDeadSound.play();
             songGoombaDeath3 = false;
+        }
+        if(jesus.gotMushroom && powerUpSound){
+            jesus.powerUpS.play();
+            powerUpSound = false;
+        }
+        if(jesus.hitByGoomba && powerDownSound){
+            jesus.powerDownS.play();
+            powerDownSound = false;
+        }
+        if(map.mushroomAppears && mushroom){
+            map.mushroomAppearsS.play();
+            mushroom = false;
         }
         // jesus.animation2();
         window.display();
