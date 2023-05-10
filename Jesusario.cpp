@@ -70,6 +70,12 @@ void Jesusario :: move(){
         if(y > 850){
             die = true;
         }
+    } else if(((x >= 3255 && x <= 3310) || (x >= 4055 && x <= 4155) || ((x >= 7214 && x <= 7270)) ) && y >= 589 && bigJesus){
+        y += .2f;
+        fellInPits = true;
+        if(y > 850){
+            die = true;
+        }
     } else if(y > 850){
         fellInPits = true;
         die = true;
@@ -80,6 +86,10 @@ void Jesusario :: move(){
     }
 }
 void Jesusario :: animation(){
+    // if(invincible && invincibleCounter != 20000){
+    //     sprite.setTexture(strongJesus);
+    //     sprite.setTextureRect(sf::IntRect(0,0,60,96));
+    // }
     if(die && smallJesus){
         sprite.setTexture(jesusDied);
         sprite.setTextureRect(sf::IntRect(0,0,45,48));
@@ -154,10 +164,20 @@ void Jesusario :: animation(){
     // }
 }
 void Jesusario :: dead(Jesusario& jesus, Goomba& goomba){
-    if(!goomba.die){
+    if(!goomba.die && jesus.smallJesus && !invincible){
         if((int)jesus.getY() <= (int)goomba.getY()+48 && (int)jesus.getY()+48 >= (int)goomba.getY() && (int)jesus.getX() == (int)goomba.getX()+48 || 
         (((int)jesus.getX()+45 >= goomba.getX()) && ((int)jesus.getX() <= (int)goomba.getX() + 45) && ((int)jesus.getY()+48 == (int)goomba.getY() + 48))){
             jesus.die = true;
+        }
+    } else if(!goomba.die && jesus.bigJesus){
+        if((int)jesus.getY() <= (int)goomba.getY()+48 && (int)jesus.getY()+96 >= (int)goomba.getY() && (int)jesus.getX() == (int)goomba.getX()+48 || 
+        (((int)jesus.getX()+60 >= goomba.getX()) && ((int)jesus.getX() <= (int)goomba.getX() + 48) && ((int)jesus.getY()+96 == (int)goomba.getY() + 48))){
+            // jesus.die = true;
+            jesus.bigJesus = false;
+            jesus.smallJesus = true;
+            jesus.invincible = true;
+            sprite.setTexture(texture1);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
         }
     }
 }
@@ -268,5 +288,13 @@ void Jesusario :: animation2(){
         right = 0;
         left = 0;
     }
+    }
+}
+void Jesusario :: invincibleTimer(){
+    if(invincible && invincibleCounter != 10000){
+        invincibleCounter++;
+    } else {
+        invincibleCounter = 0;
+        invincible = false;
     }
 }

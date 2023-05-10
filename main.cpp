@@ -68,6 +68,7 @@ int main() {
         }
         window.clear(sf::Color(100, 149, 237));
         map.drawMap(window);
+        map.mushroom(jesus);
         window.draw(logo);
         goomba.drawGoomba(window);
         goomba2.drawGoomba(window);
@@ -75,6 +76,7 @@ int main() {
         jesus.drawJesus(window);
         jesus.move();
         jesus.gravity();
+        jesus.invincibleTimer();
         goomba.walk(goomba);
         goomba2.walk2(goomba2);
         goomba3.walk3(goomba3);
@@ -97,6 +99,7 @@ int main() {
         goomba.animation();
         goomba2.animation();
         goomba3.animation();
+        map.animation(jesus);
         jesus.clearedLevel();
         jesus.drawMariachis(window);
         if(jesus.die && songPlayedForDeath){

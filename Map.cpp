@@ -5,6 +5,10 @@ using namespace std;
 
 Map :: Map(){
     texture.loadFromFile("Images/marioMapLarger.png");
+    mushroomT.loadFromFile("Images/mushroom.png");
+    blockT.loadFromFile("Images/defaultBlock.png");
+    blockAnimationT.loadFromFile("Images/blockAnimation.png");
+    mushroomS.setTexture(mushroomT);
     sprite.setTexture(texture);
     //blocks setting size
     b1.setSize(sf::Vector2f(60,60));
@@ -73,6 +77,8 @@ Map :: Map(){
     sprite.setPosition(0,0);
 
     //blocks setting position
+    mushroomS.setPosition(756, 460);
+    blockS.setPosition(756, 460);
     b1.setPosition(750, 455);
     b2.setPosition(945, 455);
     b3.setPosition(1039, 229);
@@ -193,6 +199,8 @@ void Map :: drawMap(sf::RenderWindow& window){
     window.draw(s25);
     window.draw(s26);
     window.draw(sprite);
+    window.draw(mushroomS);
+    window.draw(blockS);
 } 
 void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     this->blocks[0] = b1;
@@ -264,6 +272,7 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
                 jesus.y += 1;
                 jesus.collision = true;
+                hit = true;
             //bottom
             // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
             //     jesus.x = shape.getPosition().x-40;
@@ -290,6 +299,7 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+60 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
                 jesus.y += 1;
                 jesus.collision = true;
+                hit = true;
             //bottom
             // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
             //     jesus.x = shape.getPosition().x-40;
@@ -307,6 +317,32 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
     } 
     
 }
-void Map :: changeOnBlock(Jesusario& jesus){
-    
+void Map :: animation(Jesusario& jesus){
+    if(hit && counter != 50){
+        mushroomS.setPosition(x,y-=.1);
+        counter++;
+    } 
+    if(!hit){
+        blockS.setTexture(blockAnimationT);
+        int xTexture = 48;
+        blockS.setTextureRect(sf::IntRect(xTexture*counter2, 0, 48, 54));
+        counter3++;
+        if(counter3 == 500){
+            counter2++;
+            if(counter2 >= 3){
+                counter2 = 0;
+            }
+            counter3 = 0;
+        }
+    }
+    if(hit){
+        blockS.setTexture(blockT);
+        blockS.setTextureRect(sf::IntRect(0, 0, 48, 54));
+    }
+}
+void Map :: mushroom(Jesusario& jesus){
+    if((int)jesus.getY() <= mushroomS.getPosition().y+48 && (int)jesus.getY()+48 >= mushroomS.getPosition().y && (int)jesus.getX()+45 == mushroomS.getPosition().x && jesus.smallJesus){
+        jesus.bigJesus = true;
+        jesus.smallJesus = false;
+    } 
 }

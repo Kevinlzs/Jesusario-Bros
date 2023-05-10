@@ -23,7 +23,7 @@ public:
     sf::Sound goombaDeadSound;
     bool alreadyDied = false, deleteSprite = false;
     bool die = false;
-    int counter = 0;
+    int counter = 0, counter2 = 0;
     sf::Texture deadTexture;
     // sf::Sprite deadSprite;
 };
