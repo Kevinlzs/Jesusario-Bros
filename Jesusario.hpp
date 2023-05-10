@@ -27,10 +27,11 @@ public:
     float x;
     float y;
     bool die = false, onBlock = false, gameFinished = false, collision = false, alreadyJumped = false;
-    bool deleteSprite = false, fellInPits = false;
+    bool deleteSprite = false, fellInPits = false, smallJesus = true, bigJesus = false;
     int counter = 500;
     int right = 0, left = 0, left2 = 0, right2 = 0;;
-    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft, jesusDied, mariachi;
+    sf::Texture texture1, texture2, rightSprite, leftSprite, jumpRight, jumpLeft, jesusDied, mariachi, strongJesus;
+    sf::Texture strongJesusAnimation, strongJesusLeft, strongJesusAnimationLeft;
     sf::Sprite sprite, mariachiOne, mariachiTwo;
     sf::SoundBuffer jumpBuffer, dieBuffer;
     sf::Sound jumpSound, dieSound;

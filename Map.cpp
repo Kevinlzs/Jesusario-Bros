@@ -257,32 +257,53 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
         // cout << blocks[i].getPosition().x << endl;
         //left side
         // cout << (shape.getPosition().x) << endl;
-        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+47 >= blocks[i].getPosition().y && (int)jesus.getX()+45 == blocks[i].getPosition().x){
-            jesus.x = blocks[i].getPosition().x-45;
-        } 
-        if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
-            jesus.y += 1;
-            jesus.collision = true;
-        //bottom
-        // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
-        //     jesus.x = shape.getPosition().x-40;
-        // }
-        }  
-        if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
-            jesus.x = blocks[i].getPosition().x+w+1;
-            /*blocks[i].getPosition().x+62*/;
-        //right
+        if(jesus.smallJesus){
+            if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+47 >= blocks[i].getPosition().y && (int)jesus.getX()+45 == blocks[i].getPosition().x){
+                jesus.x = blocks[i].getPosition().x-45;
+            } 
+            if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
+                jesus.y += 1;
+                jesus.collision = true;
+            //bottom
+            // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
+            //     jesus.x = shape.getPosition().x-40;
+            // }
+            }  
+            if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
+                jesus.x = blocks[i].getPosition().x+w+1;
+                /*blocks[i].getPosition().x+62*/;
+            //right
+            }
+            if(((int)jesus.getX()+44 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
+                jesus.onBlock = true;
+                    //blocks[i].getPosition().y-45
+                // jesus.y = blocks[i].getPosition().y-48;
+            //top
+            }
+            // if(((int)jesus.getX()+45 < blocks[i].getPosition().x) || ((int)jesus.getX() > blocks[i].getPosition().x+w)){
+            //     jesus.onBlock = false;
+            //     cout << "ko" << endl;
+        } else if(jesus.bigJesus){
+            if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+95 >= blocks[i].getPosition().y && (int)jesus.getX()+60 == blocks[i].getPosition().x){
+                jesus.x = blocks[i].getPosition().x-60;
+            } 
+            if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+60 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
+                jesus.y += 1;
+                jesus.collision = true;
+            //bottom
+            // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
+            //     jesus.x = shape.getPosition().x-40;
+            // }
+            }  
+            if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+96 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
+                jesus.x = blocks[i].getPosition().x+w+1;
+                /*blocks[i].getPosition().x+62*/;
+            //right
+            }
+            if(jesus.bigJesus && ((int)jesus.getX()+59 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+96 == blocks[i].getPosition().y)){
+                jesus.onBlock = true;
+            }
         }
-        if(((int)jesus.getX()+44 >= blocks[i].getPosition().x) && ((int)jesus.getX() <= blocks[i].getPosition().x+w) && ((int)jesus.getY()+48 == blocks[i].getPosition().y)){
-            jesus.onBlock = true;
-                //blocks[i].getPosition().y-45
-            // jesus.y = blocks[i].getPosition().y-48;
-        //top
-        }
-        // if(((int)jesus.getX()+45 < blocks[i].getPosition().x) || ((int)jesus.getX() > blocks[i].getPosition().x+w)){
-        //     jesus.onBlock = false;
-        //     cout << "ko" << endl;
-        // }
     } 
     
 }

@@ -90,8 +90,10 @@ int main() {
         goomba3.dead(jesus);
         jesus.dead(jesus, goomba);
         jesus.dead(jesus, goomba2);
+        jesus.dead(jesus, goomba3);
         jesus.bringDown();
         jesus.animation();
+        jesus.animation2();
         goomba.animation();
         goomba2.animation();
         goomba3.animation();

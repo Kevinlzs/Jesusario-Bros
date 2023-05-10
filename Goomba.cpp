@@ -90,9 +90,13 @@ void Goomba :: walk3(Goomba& goomba){
     }
 }
 void Goomba :: checkDeath(const Jesusario& jesus, Goomba& goomba){
-    if(!jesus.die)
+    if(!jesus.die && jesus.smallJesus)
     {
         if(((int)jesus.getX()+45 >= (int)goomba.getX() && ((int)jesus.getX() <= goomba.getX()+50) && ((int)jesus.getY()+48 == goomba.getY()))){
+            goomba.die = true;
+        }
+    } else if(!jesus.die && jesus.bigJesus){
+        if(((int)jesus.getX()+60 >= (int)goomba.getX() && ((int)jesus.getX() <= goomba.getX()+50) && ((int)jesus.getY()+96 == goomba.getY()))){
             goomba.die = true;
         }
     }

@@ -8,6 +8,10 @@ using namespace std;
 Jesusario :: Jesusario(){
     x = 300; //1st = 3230// castle door = 9625
     y = 638;
+    strongJesus.loadFromFile("Images/strongJesus.png");
+    strongJesusLeft.loadFromFile("Images/strongJesusLeft.png");
+    strongJesusAnimation.loadFromFile("Images/bigJesusAnimation.png");
+    strongJesusAnimationLeft.loadFromFile("Images/bigJesusAnimationLeft.png");
     mariachi.loadFromFile("Images/mariachiPixel.png");
     jumpRight.loadFromFile("Images/jesusJumping.png");
     jumpLeft.loadFromFile("Images/jesusJumpingLeft.png");
@@ -76,11 +80,11 @@ void Jesusario :: move(){
     }
 }
 void Jesusario :: animation(){
-    if(die){
+    if(die && smallJesus){
         sprite.setTexture(jesusDied);
         sprite.setTextureRect(sf::IntRect(0,0,45,48));
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && smallJesus){
         // texture.loadFromFile("Images/jesus.png");
         if(right > left){
             sprite.setTexture(texture1);
@@ -90,7 +94,7 @@ void Jesusario :: animation(){
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
         }
     }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && smallJesus){
         if(y < 638 && !onBlock){
             sprite.setTexture(jumpRight);
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
@@ -103,7 +107,7 @@ void Jesusario :: animation(){
         }
         right += 1;
         right2++;
-    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die){
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die && smallJesus){
         if(y < 638 && !onBlock){
             sprite.setTexture(jumpLeft);
             sprite.setTextureRect(sf::IntRect(0,0,45,48));
@@ -117,21 +121,23 @@ void Jesusario :: animation(){
         left += 1;
         left2++;
     } else {
-        if(right > left && !gameFinished){
+        if(right > left && !gameFinished && smallJesus){
             // texture.loadFromFile("Images/jesus.png");
             sprite.setTexture(texture1);
             sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
             right = 0;
             left = 0;
-        } else if(left > right && !gameFinished){
+        } else if(left > right && !gameFinished && smallJesus){
             sprite.setTexture(texture2);
             sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
             right = 0;
             left = 0;
         }
-    sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
-    right = 0;
-    left = 0;
+    if(smallJesus){
+        sprite.setTextureRect(sf::IntRect(0, 0, 45, 48));
+        right = 0;
+        left = 0;
+    }
     }
     // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
     //     if(right2 > left2){
@@ -166,9 +172,11 @@ void Jesusario :: bringDown(){
     }
 }
 void Jesusario :: gravity(){
-    if(y < 638 && !onBlock){
+    if(y < 638 && !onBlock && smallJesus){
         y += .15f;
-    } else {
+    } else if(y < 590 && !onBlock && bigJesus){
+        y += .15f;
+    } else{
         collision = false;
         counter = 500;//make him jump longer
         alreadyJumped = false;
@@ -195,5 +203,70 @@ void Jesusario :: drawMariachis(sf::RenderWindow& window){
         mariachiTwo.setPosition(9690, 542);
         window.draw(mariachiOne);
         window.draw(mariachiTwo);
+    }
+}
+void Jesusario :: animation2(){
+    // if(bigJesus){
+    //     sprite.setTexture(strongJesus);
+    //     sprite.setTextureRect(sf::IntRect(0,0,60,96));
+    // }
+    // if(die && smallJesus){
+    //     sprite.setTexture(jesusDied);
+    //     sprite.setTextureRect(sf::IntRect(0,0,45,48));
+    // }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && bigJesus){
+        // texture.loadFromFile("Images/jesus.png");
+        if(right > left){
+            sprite.setTexture(strongJesus);
+            sprite.setTextureRect(sf::IntRect(0,0,62,96));
+        } else if(left > right){
+            sprite.setTexture(strongJesusLeft);
+            sprite.setTextureRect(sf::IntRect(0,0,62,96));
+        }
+    }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && bigJesus){
+        if(y < 590 && !onBlock){
+            sprite.setTexture(strongJesus);
+            sprite.setTextureRect(sf::IntRect(0,0,62,96));
+        } else if(y >= 638 || 1){
+            sprite.setTexture(strongJesusAnimation);
+            int xTexture = 0;
+            xTexture = (int)sprite.getPosition().x/30 % 3; 
+            xTexture *= 66;
+            sprite.setTextureRect(sf::IntRect(xTexture, 0, 66, 96));
+        }
+        right += 1;
+        right2++;
+    } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die && bigJesus){
+        if(y < 590 && !onBlock){
+            sprite.setTexture(strongJesusLeft);
+            sprite.setTextureRect(sf::IntRect(0,0,62,96));
+        } else if(y >= 638 || 1){
+            sprite.setTexture(strongJesusAnimationLeft);
+            int xTexture = 0;
+            xTexture = (int)sprite.getPosition().x/30 % 3; 
+            xTexture *= 66;
+            sprite.setTextureRect(sf::IntRect(xTexture, 0, 66, 96));
+        }
+        left += 1;
+        left2++;
+    } else {
+        if(right > left && !gameFinished && bigJesus){
+            // texture.loadFromFile("Images/jesus.png");
+            sprite.setTexture(strongJesus);
+            sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+            right = 0;
+            left = 0;
+        } else if(left > right && !gameFinished && bigJesus){
+            sprite.setTexture(strongJesusLeft);
+            sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+            right = 0;
+            left = 0;
+        }
+    if(bigJesus){
+        sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+        right = 0;
+        left = 0;
+    }
     }
 }
