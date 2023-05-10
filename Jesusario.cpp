@@ -227,7 +227,7 @@ void Jesusario :: animation2(){
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && bigJesus){
         if(y < 590 && !onBlock){
             sprite.setTexture(strongJesus);
-            sprite.setTextureRect(sf::IntRect(0,0,62,96));
+            sprite.setTextureRect(sf::IntRect(0,0,61,96));
         } else if(y >= 638 || 1){
             sprite.setTexture(strongJesusAnimation);
             int xTexture = 0;
@@ -254,17 +254,17 @@ void Jesusario :: animation2(){
         if(right > left && !gameFinished && bigJesus){
             // texture.loadFromFile("Images/jesus.png");
             sprite.setTexture(strongJesus);
-            sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+            sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
             right = 0;
             left = 0;
         } else if(left > right && !gameFinished && bigJesus){
             sprite.setTexture(strongJesusLeft);
-            sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+            sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
             right = 0;
             left = 0;
         }
     if(bigJesus){
-        sprite.setTextureRect(sf::IntRect(0, 0, 62, 96));
+        sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
         right = 0;
         left = 0;
     }
