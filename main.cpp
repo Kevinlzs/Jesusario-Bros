@@ -15,6 +15,7 @@ int main() {
     Goomba goomba2(2260);
     Goomba goomba3(3500);
     Goomba goomba4(4500);
+    Goomba goomba5(7850);
     Jesusario jesus;
     sf::View myView(sf::Vector2f(300.f, 3000.f), sf::Vector2f(700.f, 800.f));
     sf::SoundBuffer buffer;
@@ -34,6 +35,7 @@ int main() {
     bool songGoombaDeath2 = true;
     bool songGoombaDeath3 = true;
     bool songGoombaDeath4 = true;
+    bool songGoombaDeath5 = true;
     bool powerUpSound = true;
     bool powerDownSound = true;
     bool mushroom = true;
@@ -79,6 +81,7 @@ int main() {
         goomba2.drawGoomba(window);
         goomba3.drawGoomba(window);
         goomba4.drawGoomba(window);
+        goomba5.drawGoomba(window);
         jesus.drawJesus(window);
         jesus.move();
         jesus.gravity();
@@ -87,6 +90,7 @@ int main() {
         goomba2.walk2(goomba2);
         goomba3.walk3(goomba3);
         goomba4.walk4(goomba4);
+        goomba5.walk5(goomba5);
         myView.setCenter(jesus.getX(),400);
         // window.getDefaultView();
         window.setView(myView); //Allows for camera to follow Jesusario
@@ -99,10 +103,13 @@ int main() {
         goomba3.dead(jesus);
         goomba4.checkDeath(jesus, goomba4);
         goomba4.dead(jesus);
+        goomba5.checkDeath(jesus, goomba5);
+        goomba5.dead(jesus);
         jesus.dead(jesus, goomba);
         jesus.dead(jesus, goomba2);
         jesus.dead(jesus, goomba3);
         jesus.dead(jesus, goomba4);
+        jesus.dead(jesus, goomba5);
         jesus.bringDown();
         jesus.animation();
         jesus.animation2();
@@ -111,6 +118,7 @@ int main() {
         goomba2.animation();
         goomba3.animation();
         goomba4.animation();
+        goomba5.animation();
         map.animation(jesus);
         jesus.clearedLevel();
         jesus.drawMariachis(window);
@@ -132,6 +140,10 @@ int main() {
             songGoombaDeath3 = false;
         }
         if(goomba4.die && songGoombaDeath4){
+            goomba.goombaDeadSound.play();
+            songGoombaDeath4 = false;
+        }
+        if(goomba5.die && songGoombaDeath5){
             goomba.goombaDeadSound.play();
             songGoombaDeath4 = false;
         }

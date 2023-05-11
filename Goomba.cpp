@@ -107,6 +107,24 @@ void Goomba :: walk4(Goomba& goomba){
         direction = "left";
     }
 }
+void Goomba :: walk5(Goomba& goomba){      
+    static string direction = "right";
+    static float counter = 0;
+    if(direction == "right" && !die){     
+        goomba.x += .05;
+        counter += .05;
+    }
+    else if(direction == "left" && !die){
+        goomba.x -= .05;
+        counter -= .05;
+    }
+    if((int)counter <= 0){
+        direction = "right";
+    }
+    else if((int)counter >= 500){
+        direction = "left";
+    }
+}
 void Goomba :: checkDeath(const Jesusario& jesus, Goomba& goomba){
     if(!jesus.die && jesus.smallJesus)
     {
