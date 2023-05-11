@@ -14,6 +14,7 @@ public:
     void walk(Goomba& goomba);
     void walk2(Goomba& goomba);
     void walk3(Goomba& goomba);
+    void walk4(Goomba& goomba);
     void checkDeath(const Jesusario& jesus, Goomba& goomba);
     void dead(Jesusario& jesus);
     void animation();

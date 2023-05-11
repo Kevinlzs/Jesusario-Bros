@@ -89,6 +89,24 @@ void Goomba :: walk3(Goomba& goomba){
         direction = "left";
     }
 }
+void Goomba :: walk4(Goomba& goomba){      
+    static string direction = "right";
+    static float counter = 0;
+    if(direction == "right" && !die){     
+        goomba.x += .05;
+        counter += .05;
+    }
+    else if(direction == "left" && !die){
+        goomba.x -= .05;
+        counter -= .05;
+    }
+    if((int)counter <= 0){
+        direction = "right";
+    }
+    else if((int)counter >= 1500){
+        direction = "left";
+    }
+}
 void Goomba :: checkDeath(const Jesusario& jesus, Goomba& goomba){
     if(!jesus.die && jesus.smallJesus)
     {
@@ -115,7 +133,10 @@ void Goomba :: dead(Jesusario& jesus){
         }
         sprite.setTexture(deadTexture);
         sprite.setTextureRect(sf::IntRect(0,0,48,48));
-        counter++;
+        if(counter <= 3000){
+            counter++;
+        }
+        // cout << counter << endl;
     }
 }
 void Goomba :: animation(){

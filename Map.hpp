@@ -10,6 +10,7 @@ public:
     void checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]);
     void animation(Jesusario& jesus);
     void mushroom(Jesusario& jesus);
+    void b1Block(Jesusario& jesus);
 // private:
     bool hit = false, deleteMushroom = false, mushroomAppears = false;
     sf::Sprite sprite, mushroomS, blockS;
