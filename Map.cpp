@@ -278,12 +278,14 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+45 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
                 jesus.y += 1;
                 jesus.collision = true;
-                hit = true;
+                if(i == 0){
+                    hit = true;
+                }
             //bottom
             // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
             //     jesus.x = shape.getPosition().x-40;
             // }
-            }  
+            }
             if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+48 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
                 jesus.x = blocks[i].getPosition().x+w+1;
                 /*blocks[i].getPosition().x+62*/;
@@ -305,12 +307,11 @@ void Map :: checkCollision(Jesusario& jesus, sf::RectangleShape blocks[]){
             if((int)jesus.getY() == blocks[i].getPosition().y+h && ((int)jesus.getX()+60 >= blocks[i].getPosition().x && (int)jesus.getX() <= blocks[i].getPosition().x+w)){
                 jesus.y += 1;
                 jesus.collision = true;
-                hit = true;
             //bottom
             // if((int)jesus.getY() >= shape.getPosition().y && (int)jesus.getY() <= shape.getPosition().y+h && (int)jesus.getX()+45 >= shape.getPosition().x){
             //     jesus.x = shape.getPosition().x-40;
             // }
-            }  
+            }
             if((int)jesus.getY() <= blocks[i].getPosition().y+h && (int)jesus.getY()+96 >= blocks[i].getPosition().y && (int)jesus.getX() == blocks[i].getPosition().x+w){
                 jesus.x = blocks[i].getPosition().x+w+1;
                 /*blocks[i].getPosition().x+62*/;
