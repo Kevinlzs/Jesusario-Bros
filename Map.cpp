@@ -335,7 +335,7 @@ void Map :: animation(Jesusario& jesus){
         int xTexture = 48;
         blockS.setTextureRect(sf::IntRect(xTexture*counter2, 0, 48, 54));
         counter3++;
-        if(counter3 == 500){
+        if(counter3 == 1000){
             counter2++;
             if(counter2 >= 3){
                 counter2 = 0;

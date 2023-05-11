@@ -106,6 +106,7 @@ int main() {
         jesus.bringDown();
         jesus.animation();
         jesus.animation2();
+        jesus.blinkSprite();
         goomba.animation();
         goomba2.animation();
         goomba3.animation();

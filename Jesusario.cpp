@@ -8,6 +8,8 @@ using namespace std;
 Jesusario :: Jesusario(){
     x = 300; //1st = 3230// castle door = 9625
     y = 638;
+    crouchingLeftT.loadFromFile("Images/jesusCrouchingLeft.png");
+    crouchingT.loadFromFile("Images/jesusCrouching.png");
     strongJesusJumping.loadFromFile("Images/strongJesusJumping.png");
     strongJesusJumpingLeft.loadFromFile("Images/strongJesusJumpingLeft.png");
     strongJesus.loadFromFile("Images/strongJesus.png");
@@ -44,11 +46,11 @@ void Jesusario :: move(){
         x = x;
     } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !gameFinished && !die){
         if(x >= 0){
-            x -= .2;
+            x -= .18;
         }
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die){
         if(x <= 9955){
-            x += .2;
+            x += .18;
         }
     } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up ) && !gameFinished && !die){
@@ -248,6 +250,21 @@ void Jesusario :: animation2(){
     //     sprite.setTexture(jesusDied);
     //     sprite.setTextureRect(sf::IntRect(0,0,45,48));
     // }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !gameFinished && !die && bigJesus){
+        if(right2 > left2){
+            sprite.setTexture(crouchingT);
+            sprite.setTextureRect(sf::IntRect(0,0,60,96));
+        } else if(left2 > right2){
+            sprite.setTexture(crouchingLeftT);
+            sprite.setTextureRect(sf::IntRect(0,0,60,96));
+        }
+    } else if(!gameFinished && !die && bigJesus && right2 > left2){
+        sprite.setTexture(strongJesus);
+        sprite.setTextureRect(sf::IntRect(0,0,60,96));
+    } else if(!gameFinished && !die && bigJesus && right2 < left2){
+        sprite.setTexture(strongJesusLeft);
+        sprite.setTextureRect(sf::IntRect(0,0,60,96));
+    }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !gameFinished && !die && bigJesus){
         // texture.loadFromFile("Images/jesus.png");
         if(right > left){
@@ -291,11 +308,15 @@ void Jesusario :: animation2(){
             sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
             right = 0;
             left = 0;
+            right2 = 1;
+            left2 = 0;
         } else if(left > right && !gameFinished && bigJesus){
             sprite.setTexture(strongJesusLeft);
             sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
             right = 0;
             left = 0;
+            right2 = 0;
+            left2 = 1;
         }
     if(bigJesus){
         sprite.setTextureRect(sf::IntRect(0, 0, 60, 96));
@@ -305,10 +326,32 @@ void Jesusario :: animation2(){
     }
 }
 void Jesusario :: invincibleTimer(){
-    if(invincible && invincibleCounter != 10000){
+    if(invincible && invincibleCounter != 5001){
         invincibleCounter++;
     } else {
         invincibleCounter = 0;
         invincible = false;
     }
+}
+void Jesusario :: blinkSprite(){
+    if(invincible && invincibleCounter % 3 == 0){
+        if(right > left && !gameFinished && !die){
+            sprite.setTexture(texture1);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
+        } else if(left > right && !gameFinished && !die){
+            sprite.setTexture(texture1);
+            sprite.setTextureRect(sf::IntRect(0,0,45,48));
+        }
+    } else if(invincible && invincibleCounter % 2 == 0){
+        deleteSprite = true;
+        // counter2 = 0;
+    } else {
+        deleteSprite = false;
+    }
+    // else if(invincible && invincibleCounter % 50 != 0 && counter2 != 500){
+    //     sprite.setTexture(texture1);
+    //     sprite.setTextureRect(sf::IntRect(0,0,45,48));
+    //     counter2++;
+    //     cout << counter2 << endl;
+    // }
 }
