@@ -145,7 +145,7 @@ int main() {
         }
         if(goomba5.die && songGoombaDeath5){
             goomba.goombaDeadSound.play();
-            songGoombaDeath4 = false;
+            songGoombaDeath5 = false;
         }
         if(jesus.gotMushroom && powerUpSound){
             jesus.powerUpS.play();
